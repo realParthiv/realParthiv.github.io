@@ -29,17 +29,17 @@ import Base from '../layouts/Base.astro';
 
         <div class="space-y-2">
           <label for="name" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Name</label>
-          <input type="text" id="name" name="name" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" />
+          <input type="text" id="name" name="name" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-inherit focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" style="color: inherit;" />
         </div>
         
         <div class="space-y-2">
           <label for="email" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Email</label>
-          <input type="email" id="email" name="email" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" />
+          <input type="email" id="email" name="email" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-inherit focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" style="color: inherit;" />
         </div>
         
         <div class="space-y-2">
           <label for="message" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Message</label>
-          <textarea id="message" name="message" rows="5" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors resize-y"></textarea>
+          <textarea id="message" name="message" rows="5" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-inherit focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors resize-y" style="color: inherit;"></textarea>
         </div>
         
         <!-- Error Message (Hidden by default) -->
@@ -51,26 +51,40 @@ import Base from '../layouts/Base.astro';
       </form>
     </section>
 
-    <div class="flex flex-col gap-4 font-data text-sm tracking-wider uppercase">
-      <a href="mailto:parthivp848@gmail.com" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
-        <span class="text-light-muted dark:text-dark-muted">Email</span> — parthivp848@gmail.com 
-        <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
-      </a>
-      
-      <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
-        <span class="text-light-muted dark:text-dark-muted">LinkedIn</span> — linkedin.com/in/parthivparmar
-        <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
-      </a>
-      
-      <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
-        <span class="text-light-muted dark:text-dark-muted">GitHub</span> — github.com/realParthiv
-        <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
-      </a>
-    </div>
+    <!-- Fallback Links -->
+    <section class="pt-8 border-t border-light-hairline dark:border-dark-hairline">
+      <div class="flex flex-col gap-4 font-data text-sm tracking-wider uppercase">
+        <a href="mailto:parthivp848@gmail.com" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
+          <span class="text-light-muted dark:text-dark-muted">Email</span> — parthivp848@gmail.com 
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+        </a>
+        
+        <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
+          <span class="text-light-muted dark:text-dark-muted">LinkedIn</span> — linkedin.com/in/parthivparmar
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+        </a>
+        
+        <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
+          <span class="text-light-muted dark:text-dark-muted">GitHub</span> — github.com/realParthiv
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+        </a>
+      </div>
+    </section>
   </article>
 </Base>
 
-<style>
+<style is:global>
+  /* Force text colors to prevent browser native/extension overrides */
+  html.dark input,
+  html.dark textarea {
+    color: #DEE3DD !important;
+  }
+  
+  html:not(.dark) input,
+  html:not(.dark) textarea {
+    color: #12160F !important;
+  }
+
   /* Fix Webkit autofill background overriding dark mode */
   input:-webkit-autofill,
   input:-webkit-autofill:hover, 
@@ -79,11 +93,11 @@ import Base from '../layouts/Base.astro';
     transition: background-color 5000s ease-in-out 0s;
   }
   
-  :global(.dark) input:-webkit-autofill {
+  html.dark input:-webkit-autofill {
     -webkit-text-fill-color: #DEE3DD !important;
   }
   
-  :global(:not(.dark)) input:-webkit-autofill {
+  html:not(.dark) input:-webkit-autofill {
     -webkit-text-fill-color: #12160F !important;
   }
 </style>
