@@ -24,19 +24,22 @@ import Base from '../layouts/Base.astro';
       </div>
 
       <form id="contact-form" class="space-y-6">
+        <!-- Web3Forms Honeypot -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
         <div class="space-y-2">
           <label for="name" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Name</label>
-          <input type="text" id="name" name="name" required class="w-full bg-transparent border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" />
+          <input type="text" id="name" name="name" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" />
         </div>
         
         <div class="space-y-2">
           <label for="email" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Email</label>
-          <input type="email" id="email" name="email" required class="w-full bg-transparent border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" />
+          <input type="email" id="email" name="email" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" />
         </div>
         
         <div class="space-y-2">
           <label for="message" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Message</label>
-          <textarea id="message" name="message" rows="5" required class="w-full bg-transparent border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors resize-y"></textarea>
+          <textarea id="message" name="message" rows="5" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors resize-y"></textarea>
         </div>
         
         <!-- Error Message (Hidden by default) -->
@@ -74,6 +77,17 @@ import Base from '../layouts/Base.astro';
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
+    // Client-side rate limiting (throttle to 1 submission per minute)
+    const lastSubmit = localStorage.getItem('lastFormSubmit');
+    const now = new Date().getTime();
+    if (lastSubmit && now - parseInt(lastSubmit) < 60000) {
+      if (formError) {
+        formError.textContent = 'Too many requests. Please wait a minute before sending another message.';
+        formError.classList.remove('hidden');
+      }
+      return;
+    }
+
     // Reset states
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
@@ -83,6 +97,15 @@ import Base from '../layouts/Base.astro';
     const name = formData.get('name');
     const email = formData.get('email');
     const message = formData.get('message');
+    const botcheck = formData.get('botcheck');
+
+    // Honeypot check
+    if (botcheck) {
+      // Silently reject if bot filled the hidden field
+      form.classList.add('hidden');
+      if (formSuccess) formSuccess.classList.remove('hidden');
+      return;
+    }
 
     // Make sure we have the API key in the environment
     const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
@@ -116,6 +139,7 @@ import Base from '../layouts/Base.astro';
       const json = await response.json();
 
       if (response.ok && json.success) {
+        localStorage.setItem('lastFormSubmit', now.toString());
         form.classList.add('hidden');
         if (formSuccess) formSuccess.classList.remove('hidden');
       } else {
