@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base>
+  <article class="space-y-12 animate-fade-up">
+    <!-- Header -->
+    <header class="space-y-4 pb-8 border-b border-light-hairline dark:border-dark-hairline">
+      <h1 class="font-display font-medium text-3xl sm:text-4xl text-light-text dark:text-dark-text leading-tight">
+        {entry.data.title}
+      </h1>
+      <div class="flex flex-wrap items-center gap-4 font-data text-sm text-light-muted dark:text-dark-muted">
+        <time datetime={entry.data.date.toISOString()}>
+          {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        
+        {entry.data.tags && entry.data.tags.length > 0 && (
+          <>
+            <span class="text-light-hairline dark:text-dark-hairline">|</span>
+            <div class="flex gap-2">
+              {entry.data.tags.map(tag => (
+                <span class="bg-light-surface dark:bg-dark-surface px-2 py-0.5 rounded text-xs border border-light-hairline dark:border-dark-hairline">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </header>
+
+    <!-- Body content -->
+    <div class="font-body text-lg leading-relaxed max-w-[65ch] text-light-text dark:text-dark-text space-y-6 prose-p:mb-6 prose-headings:font-display prose-headings:font-medium prose-headings:mt-12 prose-headings:mb-6 prose-a:text-light-accent dark:prose-a:text-dark-accent hover:prose-a:underline">
+      <Content />
+    </div>
+
+    <!-- Back link -->
+    <div class="pt-12 border-t border-light-hairline dark:border-dark-hairline">
+      <a href="/blog" class="text-sm font-medium hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1 group w-fit">
+        <span class="group-hover:-translate-x-1 transition-transform">&larr;</span>
+        All entries
+      </a>
+    </div>
+  </article>
+</Base>

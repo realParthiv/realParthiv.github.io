@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import VerifiedCapabilities from '../components/VerifiedCapabilities.astro';
+---
+
+<Base>
+  <article class="space-y-16 animate-fade-up">
+    
+    <!-- Brand Seal -->
+    <div class="w-18 h-18 rounded-full border border-light-accent dark:border-dark-accent flex items-center justify-center shrink-0">
+      <!-- 72px is w-18 / h-18 in standard Tailwind (18 * 4 = 72px). -->
+      <span class="font-display font-semibold text-light-accent dark:text-dark-accent text-3xl leading-none mt-1">PP</span>
+    </div>
+
+    <!-- BIO -->
+    <section class="space-y-6 max-w-[65ch]">
+      <h1 class="font-display text-2xl font-medium text-light-text dark:text-dark-text uppercase tracking-wider">About</h1>
+      <p class="font-body text-lg leading-relaxed text-light-text dark:text-dark-text">
+        Started in Django backend — REST APIs, database concurrency, the unglamorous plumbing that has to hold under load. Moved into applied ML because the interesting problems kept living at that boundary: agents that need to read and write real data, not just generate text. I ship end to end when the project calls for it — architecture through deployment, alone if that's what's needed. No rush toward it, no external scoreboard for it. Just enough repetitions, compounding.
+      </p>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="space-y-8">
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted uppercase tracking-wider">Education</h2>
+      
+      <div class="flex flex-col gap-4 border-t border-light-hairline dark:border-dark-hairline py-4">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+          <div class="font-body font-medium text-light-text dark:text-dark-text text-base">
+            BSc IT <span class="font-normal text-light-muted dark:text-dark-muted mx-2">—</span> GLS University, Ahmedabad
+          </div>
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted">
+            2022–2025 <span class="mx-2 font-body text-light-hairline dark:text-dark-hairline">|</span> CGPA 8.2
+          </div>
+        </div>
+      </div>
+      
+      <!-- /* MSc IT status not confirmed for public display — ask Parthiv before adding */ -->
+    </section>
+
+    <!-- VERIFIED CAPABILITIES -->
+    <VerifiedCapabilities />
+
+  </article>
+</Base>
