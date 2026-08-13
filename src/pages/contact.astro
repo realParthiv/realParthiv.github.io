@@ -51,22 +51,42 @@ import Base from '../layouts/Base.astro';
       </form>
     </section>
 
-    <!-- Fallback Links -->
-    <section class="pt-8 border-t border-light-hairline dark:border-dark-hairline">
-      <div class="flex flex-col gap-4 font-data text-sm tracking-wider uppercase">
-        <a href="mailto:parthivp848@gmail.com" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors group flex items-center gap-2 w-fit">
-          <span class="text-light-muted dark:text-dark-muted">Email</span> — parthivp848@gmail.com <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
-        </a>
-        <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors group flex items-center gap-2 w-fit">
-          <span class="text-light-muted dark:text-dark-muted">LinkedIn</span> — linkedin.com/in/parthivparmar <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
-        </a>
-        <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors group flex items-center gap-2 w-fit">
-          <span class="text-light-muted dark:text-dark-muted">GitHub</span> — github.com/realParthiv <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
-        </a>
-      </div>
-    </section>
+    <div class="flex flex-col gap-4 font-data text-sm tracking-wider uppercase">
+      <a href="mailto:parthivp848@gmail.com" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
+        <span class="text-light-muted dark:text-dark-muted">Email</span> — parthivp848@gmail.com 
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+      </a>
+      
+      <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
+        <span class="text-light-muted dark:text-dark-muted">LinkedIn</span> — linkedin.com/in/parthivparmar
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+      </a>
+      
+      <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
+        <span class="text-light-muted dark:text-dark-muted">GitHub</span> — github.com/realParthiv
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+      </a>
+    </div>
   </article>
 </Base>
+
+<style>
+  /* Fix Webkit autofill background overriding dark mode */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  
+  :global(.dark) input:-webkit-autofill {
+    -webkit-text-fill-color: #DEE3DD !important;
+  }
+  
+  :global(:not(.dark)) input:-webkit-autofill {
+    -webkit-text-fill-color: #12160F !important;
+  }
+</style>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
