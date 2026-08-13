@@ -4,34 +4,35 @@ import VerifiedCapabilities from '../components/VerifiedCapabilities.astro';
 ---
 
 <Base>
-  <article class="space-y-16 animate-fade-up">
+  <article class="space-y-24 sm:space-y-32 animate-fade-up">
     
-    <!-- Brand Seal -->
-    <div class="w-18 h-18 rounded-full border border-light-accent dark:border-dark-accent flex items-center justify-center shrink-0">
-      <!-- 72px is w-18 / h-18 in standard Tailwind (18 * 4 = 72px). -->
-      <span class="font-display font-semibold text-light-accent dark:text-dark-accent text-3xl leading-none mt-1">PP</span>
-    </div>
-
-    <!-- BIO -->
-    <section class="space-y-6 max-w-[65ch]">
-      <h1 class="font-display text-2xl font-medium text-light-text dark:text-dark-text uppercase tracking-wider">About</h1>
-      <p class="font-body text-lg leading-relaxed text-light-text dark:text-dark-text">
-        Started in Django backend — REST APIs, database concurrency, the unglamorous plumbing that has to hold under load. Moved into applied ML because the interesting problems kept living at that boundary: agents that need to read and write real data, not just generate text. I ship end to end when the project calls for it — architecture through deployment, alone if that's what's needed. No rush toward it, no external scoreboard for it. Just enough repetitions, compounding.
-      </p>
-    </section>
+    <!-- Hero / Intro -->
+    <header class="relative">
+      <div class="absolute -left-10 -top-10 w-[40%] h-full rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-30 -z-10 pointer-events-none"></div>
+      
+      <h1 class="font-display text-5xl sm:text-7xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-light-text to-light-muted dark:from-dark-text dark:to-dark-muted mb-8">
+        About
+      </h1>
+      <div class="font-body text-xl sm:text-2xl leading-relaxed max-w-[65ch] text-light-text dark:text-dark-text">
+        <p class="mb-6">
+          I am <span class="text-light-accent dark:text-dark-accent font-medium">Parthiv Parmar</span>. I learned to build by studying the bones of backend architecture—grappling with database deadlocks, network partitions, and the unforgiving reality of systems under load. I migrated to applied Machine Learning not for the algorithmic theater, but for the engineering frontier it presented: the transition from software that merely processes instructions to agents that parse intent, reason against real-world state, and execute decisions.
+        </p>
+        <p>
+          I do not build demos; I engineer production systems. From orchestrating high-concurrency inference pipelines to wiring deterministic smart contracts, I treat software engineering as an exercise in rigorous abstraction. There is no urgency to chase the zeitgeist—only the quiet, compounding discipline of writing code that outlasts its dependencies.
+        </p>
+      </div>
+    </header>
 
     <!-- EDUCATION -->
-    <section class="space-y-8">
-      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted uppercase tracking-wider">Education</h2>
+    <section class="reveal-on-scroll">
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-widest">Education</h2>
       
-      <div class="flex flex-col gap-4 border-t border-light-hairline dark:border-dark-hairline py-4">
-        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-          <div class="font-body font-medium text-light-text dark:text-dark-text text-base">
-            BSc IT <span class="font-normal text-light-muted dark:text-dark-muted mx-2">—</span> GLS University, Ahmedabad
-          </div>
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted">
-            2022–2025 <span class="mx-2 font-body text-light-hairline dark:text-dark-hairline">|</span> CGPA 8.2
-          </div>
+      <div class="group relative flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 py-6 border-y border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+        <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">
+          BSc Information Technology <span class="block sm:inline font-normal text-sm sm:text-xl text-light-muted dark:text-dark-muted sm:mx-2 mt-1 sm:mt-0">GLS University, Ahmedabad</span>
+        </div>
+        <div class="font-data text-sm tracking-wider text-light-muted dark:text-dark-muted shrink-0 bg-light-surface dark:bg-dark-surface px-3 py-1.5 rounded-full border border-light-hairline dark:border-dark-hairline">
+          2022–2025 <span class="mx-2 text-light-hairline dark:text-dark-hairline">|</span> CGPA 8.2
         </div>
       </div>
       

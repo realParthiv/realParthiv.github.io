@@ -9,137 +9,171 @@ const recentBlogEntries = sortedBlogEntries.slice(0, 2);
 ---
 
 <Base>
-  <div class="space-y-32">
+  <div class="space-y-32 sm:space-y-48">
+    
     <!-- 1. HERO -->
-    <section class="flex flex-col items-start gap-8">
-      <div class="animate-fade-up w-14 h-14 rounded-full border border-light-accent dark:border-dark-accent flex items-center justify-center shrink-0">
-        <span class="font-display font-semibold text-light-accent dark:text-dark-accent text-xl leading-none mt-1">PP</span>
-      </div>
+    <section class="flex flex-col items-start gap-8 pt-0">
       
-      <h1 class="animate-fade-up delay-100 font-display text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-light-text dark:text-dark-text max-w-4xl leading-[1.15]">
-        AI/ML Engineer — verified via production systems, not claims.
+      <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-light-hairline dark:border-dark-hairline bg-light-surface/50 dark:bg-dark-surface/50 backdrop-blur-sm animate-fade-up">
+        <span class="w-2 h-2 rounded-full bg-light-accent dark:bg-dark-accent animate-pulse"></span>
+        <span class="font-data text-xs text-light-text dark:text-dark-text uppercase tracking-wider">currently @ Clicode — AI/ML Engineer</span>
+      </div>
+
+      <h1 class="animate-fade-up delay-100 font-display text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-light-text to-light-muted dark:from-dark-text dark:to-dark-muted max-w-5xl leading-[1.05]">
+        AI/ML Engineer <span class="text-light-muted dark:text-dark-muted font-normal">— verified via production systems, not claims.</span>
       </h1>
       
-      <div class="animate-fade-up delay-200 font-data text-sm text-light-muted dark:text-dark-muted">
-        currently @ Clicode — AI/ML Engineer
-      </div>
     </section>
 
     <!-- 2. THESIS -->
-    <section class="reveal-on-scroll flex flex-col items-start gap-6">
-      <p class="font-body text-lg sm:text-xl leading-relaxed max-w-[65ch] text-light-text dark:text-dark-text">
-        I build the layer between conversation and infrastructure — AI agents that read and write real data through MCP and RAG, backend systems that hold up under concurrent load, and the occasional smart contract when trust needs to be provable instead of promised.
+    <section class="animate-fade-up delay-200">
+      <p class="font-body text-xl sm:text-2xl text-light-text/90 dark:text-dark-text/90 leading-relaxed max-w-[65ch]">
+        I am <span class="text-light-accent dark:text-dark-accent font-medium">Parthiv Parmar</span>. I build the connective tissue bridging raw infrastructure and semantic reasoning. My discipline lies at the exact intersection of applied AI and high-throughput systems: engineering autonomous agents that mutate state via MCP, architecting retrieval pipelines designed to refuse hallucination, and deploying cryptographic contracts when trust must be absolute rather than implied.
       </p>
-      <a href="/about" class="text-sm font-medium hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1 group">
+      <a href="/about" class="inline-flex items-center gap-2 mt-6 font-data text-sm tracking-widest uppercase text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors group">
         More about how I got here 
-        <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        <span class="group-hover:translate-x-1 transition-transform">→</span>
       </a>
     </section>
 
     <!-- 3. EXPERIENCE -->
     <section class="reveal-on-scroll">
-      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Experience</h2>
-      <div class="flex flex-col gap-4">
-        <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-2 sm:gap-6 items-baseline">
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted">2026—present</div>
-          <div class="font-medium text-light-text dark:text-dark-text">AI/ML Engineer, Clicode</div>
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-10 uppercase tracking-widest">Experience</h2>
+      <div class="flex flex-col gap-6 border-l border-light-hairline dark:border-dark-hairline pl-6">
+        <div class="group relative">
+          <div class="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-light-accent dark:bg-dark-accent ring-4 ring-light-bg dark:ring-dark-bg"></div>
+          <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-1 sm:gap-8 items-baseline">
+            <div class="font-data text-sm text-light-accent dark:text-dark-accent">2026—present</div>
+            <div class="font-display text-lg sm:text-xl font-medium text-light-text dark:text-dark-text">AI/ML Engineer, Clicode</div>
+          </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-2 sm:gap-6 items-baseline">
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted">2024—2026</div>
-          <div class="font-medium text-light-text dark:text-dark-text">Associate Python Developer, Virtueinfo</div>
+        <div class="group relative opacity-70 hover:opacity-100 transition-opacity">
+          <div class="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-light-muted dark:bg-dark-muted ring-4 ring-light-bg dark:ring-dark-bg transition-colors group-hover:bg-light-text dark:group-hover:bg-dark-text"></div>
+          <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-1 sm:gap-8 items-baseline">
+            <div class="font-data text-sm text-light-muted dark:text-dark-muted group-hover:text-light-text dark:group-hover:text-dark-text transition-colors">2024—2026</div>
+            <div class="font-display text-lg sm:text-xl font-medium text-light-text dark:text-dark-text">Associate Python Developer, Virtueinfo</div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 4. LEDGER — SELECTED ENTRIES -->
     <section class="reveal-on-scroll">
-      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Ledger — Selected Entries</h2>
+      <div class="flex items-end justify-between mb-10">
+        <h2 class="font-display text-sm text-light-muted dark:text-dark-muted uppercase tracking-widest">Ledger — Selected Entries</h2>
+        <a href="/work" class="text-xs font-data uppercase tracking-wider text-light-accent dark:text-dark-accent hover:opacity-70 transition-opacity hidden sm:flex items-center gap-1 group">
+          Full work log <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
+      </div>
+      
       <div class="flex flex-col border-t border-light-hairline dark:border-dark-hairline">
         
-        <a href="/work/academicshield" class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted">01</div>
-          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">AcademicShield</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted">Django · Solidity · Ethereum · MySQL</div>
+        <a href="/work/academicshield" class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-6 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">01</div>
+          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">AcademicShield</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">Django <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Solidity <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Ethereum <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> MySQL</div>
           <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2025</div>
-          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">VERIFIED — LIVE</div>
+          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right px-2 py-1 bg-light-accent/10 dark:bg-dark-accent/10 rounded w-fit md:ml-auto">VERIFIED — LIVE</div>
         </a>
 
-        <a href="/work/pujaguru" class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted">02</div>
-          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">PujaGuru</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted">Django · MCP · MySQL · Django Channels</div>
+        <a href="/work/pujaguru" class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-6 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">02</div>
+          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">PujaGuru</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">Django <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> MCP <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> MySQL <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Channels</div>
           <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2025</div>
-          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">VERIFIED — SHIPPED</div>
+          <div class="font-data text-xs text-light-text dark:text-dark-text md:text-right px-2 py-1 border border-light-hairline dark:border-dark-hairline rounded w-fit md:ml-auto">VERIFIED — SHIPPED</div>
         </a>
 
-        <a href="/work/nomoreguilts" class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted">03</div>
-          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">NoMoreGuilts</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted">Django · Python · AI-assisted development</div>
+        <a href="/work/nomoreguilts" class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-6 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">03</div>
+          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">NoMoreGuilts</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">Django <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Python <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> AI-assisted</div>
           <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2026</div>
-          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">VERIFIED — LIVE</div>
+          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right px-2 py-1 bg-light-accent/10 dark:bg-dark-accent/10 rounded w-fit md:ml-auto">VERIFIED — LIVE</div>
         </a>
 
-        <a href="/work/neurotype" class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted">04</div>
-          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">NeuroType</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted">TensorFlow · Keras · FastAPI · React · BiLSTM</div>
+        <a href="/work/neurotype" class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-6 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">04</div>
+          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">NeuroType</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">TensorFlow <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Keras <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> FastAPI <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> React</div>
           <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2026</div>
-          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">VERIFIED — SHIPPED</div>
+          <div class="font-data text-xs text-light-text dark:text-dark-text md:text-right px-2 py-1 border border-light-hairline dark:border-dark-hairline rounded w-fit md:ml-auto">VERIFIED — SHIPPED</div>
         </a>
 
       </div>
-      <div class="mt-6">
-        <a href="/work" class="text-sm font-medium hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1 group w-fit">
-          Full work log
-          <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+      <div class="mt-8 sm:hidden">
+        <a href="/work" class="text-xs font-data uppercase tracking-wider text-light-accent dark:text-dark-accent hover:opacity-70 transition-opacity flex items-center gap-1 group w-fit">
+          Full work log <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
         </a>
       </div>
     </section>
 
     <!-- 5. VERIFIED CAPABILITIES -->
-    <!-- 5. VERIFIED CAPABILITIES -->
     <VerifiedCapabilities />
 
     <!-- 6. BLOG TEASER -->
     <section class="reveal-on-scroll">
-      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Log</h2>
+      <div class="flex items-end justify-between mb-10">
+        <h2 class="font-display text-sm text-light-muted dark:text-dark-muted uppercase tracking-widest">Log</h2>
+        {recentBlogEntries.length > 0 && (
+          <a href="/blog" class="text-xs font-data uppercase tracking-wider text-light-accent dark:text-dark-accent hover:opacity-70 transition-opacity hidden sm:flex items-center gap-1 group">
+            All entries <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+          </a>
+        )}
+      </div>
       
       {recentBlogEntries.length === 0 ? (
-        <div class="font-data text-sm text-light-muted dark:text-dark-muted py-8 border-y border-light-hairline dark:border-dark-hairline text-center">
+        <div class="font-data text-sm text-light-muted dark:text-dark-muted py-12 border border-dashed border-light-hairline dark:border-dark-hairline rounded-xl text-center bg-light-surface/30 dark:bg-dark-surface/30">
           No entries logged yet. First one's coming.
         </div>
       ) : (
         <div class="flex flex-col border-t border-light-hairline dark:border-dark-hairline">
           {recentBlogEntries.map(entry => (
-            <a href={`/blog/${entry.id}`} class="group py-6 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-                <h3 class="font-display font-medium text-lg text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">
+            <a href={`/blog/${entry.id}`} class="group py-8 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <h3 class="font-display font-medium text-2xl text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">
                   {entry.data.title}
                 </h3>
-                <time class="font-data text-xs text-light-muted dark:text-dark-muted" datetime={entry.data.date.toISOString()}>
+                <time class="font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted px-2 py-1 border border-light-hairline dark:border-dark-hairline rounded shrink-0" datetime={entry.data.date.toISOString()}>
                   {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                 </time>
               </div>
-              <p class="text-sm text-light-muted dark:text-dark-muted line-clamp-2">
+              <p class="font-body text-base text-light-text/80 dark:text-dark-text/80 line-clamp-2 max-w-[75ch] leading-relaxed">
                 {entry.data.excerpt}
               </p>
             </a>
           ))}
         </div>
       )}
+      {recentBlogEntries.length > 0 && (
+        <div class="mt-8 sm:hidden">
+          <a href="/blog" class="text-xs font-data uppercase tracking-wider text-light-accent dark:text-dark-accent hover:opacity-70 transition-opacity flex items-center gap-1 group w-fit">
+            All entries <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+          </a>
+        </div>
+      )}
     </section>
 
     <!-- 7. CONTACT / CTA -->
-    <section class="reveal-on-scroll mb-16">
-      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Contact</h2>
-      <p class="font-body text-lg mb-8">
-        Reaching out is easier than booking a puja through my own chatbot.
-      </p>
-      <div class="flex flex-wrap gap-8 text-xl font-medium">
-        <a href="mailto:parthivp848@gmail.com" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors border-b border-transparent hover:border-light-accent dark:hover:border-dark-accent pb-1">Email</a>
-        <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors border-b border-transparent hover:border-light-accent dark:hover:border-dark-accent pb-1">LinkedIn</a>
-        <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors border-b border-transparent hover:border-light-accent dark:hover:border-dark-accent pb-1">GitHub</a>
+    <section class="reveal-on-scroll mb-16 relative">
+      <div class="absolute -left-10 top-0 w-[50%] h-[150%] rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-20 -z-10 pointer-events-none"></div>
+      
+      <div class="relative z-10 pt-12 border-t border-light-hairline dark:border-dark-hairline">
+        <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-6 uppercase tracking-widest">Contact</h2>
+        <p class="font-display text-3xl sm:text-4xl font-medium tracking-tight mb-12 max-w-[25ch] leading-tight text-light-text dark:text-dark-text">
+          Human protocol remains the highest-bandwidth connection available. Initiate a handshake.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 font-data text-sm tracking-wider uppercase">
+          <a href="mailto:parthivp848@gmail.com" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group">
+            Email <span class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">&nearr;</span>
+          </a>
+          <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group">
+            LinkedIn <span class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">&nearr;</span>
+          </a>
+          <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group">
+            GitHub <span class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">&nearr;</span>
+          </a>
+        </div>
       </div>
     </section>
   </div>
@@ -150,44 +184,47 @@ const recentBlogEntries = sortedBlogEntries.slice(0, 2);
   @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(16px);
+      filter: blur(4px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
+      filter: blur(0);
     }
   }
 
   .animate-fade-up {
-    animation: fade-up 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
   }
 
-  .delay-100 { animation-delay: 100ms; }
-  .delay-200 { animation-delay: 200ms; }
+  .delay-100 { animation-delay: 150ms; }
+  .delay-200 { animation-delay: 300ms; }
 
   /* Scroll Reveal Defaults */
   .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(16px);
+    filter: blur(4px);
+    transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1), filter 800ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .reveal-on-scroll.is-revealed {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 </style>
 
 <script>
   // Intersection Observer for scroll-triggered reveals
   const setupObserver = () => {
-    // Respect reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     const observerOptions = {
       root: null,
-      rootMargin: '0px 0px -50px 0px',
+      rootMargin: '0px 0px -100px 0px',
       threshold: 0.1
     };
 
@@ -195,11 +232,10 @@ const recentBlogEntries = sortedBlogEntries.slice(0, 2);
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           if (prefersReducedMotion) {
-            // Immediate reveal without transition if reduced motion is preferred
             entry.target.style.transition = 'none';
           }
           entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target); // Only reveal once
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -208,9 +244,6 @@ const recentBlogEntries = sortedBlogEntries.slice(0, 2);
     elements.forEach(el => observer.observe(el));
   };
 
-  // Run on first load
   setupObserver();
-  
-  // Re-run setup after Astro view transitions (if enabled in future)
   document.addEventListener('astro:page-load', setupObserver);
 </script>

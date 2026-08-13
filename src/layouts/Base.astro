@@ -31,66 +31,101 @@ const currentYear = new Date().getFullYear();
     })();
   </script>
 </head>
-<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text font-body transition-colors duration-200">
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text font-body transition-colors duration-300 relative selection:bg-light-accent/30 dark:selection:bg-dark-accent/30 overflow-x-hidden">
+  
+  <!-- Ambient Background Glows -->
+  <div class="pointer-events-none fixed inset-0 overflow-hidden z-0">
+    <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-70"></div>
+    <div class="absolute top-[40%] -right-[20%] w-[40%] h-[60%] rounded-full bg-light-glow dark:bg-dark-glow blur-[150px] opacity-40"></div>
+  </div>
+
   <!-- Nav -->
-  <header class="sticky top-0 z-50 bg-light-bg dark:bg-dark-bg border-b border-light-hairline dark:border-dark-hairline transition-colors duration-200">
+  <header class="sticky top-0 z-50 bg-light-bg/70 dark:bg-dark-bg/70 backdrop-blur-md border-b border-light-hairline dark:border-dark-hairline transition-colors duration-300">
     <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-      <!-- Left: Brand Seal -->
-      <a href="/" class="flex-shrink-0" aria-label="Home">
-        <div class="w-9 h-9 rounded-full border border-light-accent dark:border-dark-accent flex items-center justify-center">
-          <span class="font-display font-semibold text-light-accent dark:text-dark-accent text-sm leading-none mt-0.5">PP</span>
+      <!-- Left: Typographic Brand Logo -->
+      <a href="/" class="flex-shrink-0 group" aria-label="Home">
+        <div class="font-display font-semibold text-lg tracking-tight">
+          <span class="text-light-text dark:text-dark-text transition-colors">Parthiv</span><span class="text-light-accent dark:text-dark-accent transition-colors group-hover:opacity-80">.</span>
         </div>
       </a>
 
       <!-- Right: Links & Theme Toggle -->
       <nav class="flex items-center gap-6">
         <div class="hidden sm:flex items-center gap-6 text-sm font-medium">
-          <a href="/work" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">Work</a>
-          <a href="/about" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">About</a>
-          <a href="/blog" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">Blog</a>
-          <a href="/contact" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">Contact</a>
+          <a href="/work" class="text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text transition-colors">Work</a>
+          <a href="/about" class="text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text transition-colors">About</a>
+          <a href="/blog" class="text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text transition-colors">Blog</a>
+          <a href="/contact" class="text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text transition-colors">Contact</a>
         </div>
         
-        <button id="theme-toggle" class="text-sm font-medium hover:text-light-accent dark:hover:text-dark-accent transition-colors" aria-label="Toggle theme">
+        <div class="w-px h-4 bg-light-hairline dark:bg-dark-hairline hidden sm:block"></div>
+        
+        <button id="theme-toggle" class="text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2" aria-label="Toggle theme">
           <span id="theme-label">Light</span>
+        </button>
+
+        <div class="w-px h-4 bg-light-hairline dark:bg-dark-hairline sm:hidden"></div>
+
+        <button id="mobile-menu-btn" class="sm:hidden text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors uppercase tracking-widest" aria-label="Toggle menu">
+          Menu
         </button>
       </nav>
     </div>
   </header>
 
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 z-40 bg-light-bg/95 dark:bg-dark-bg/95 backdrop-blur-xl translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-center px-8">
+    <nav class="flex flex-col gap-8 text-4xl font-display font-medium tracking-tight">
+      <a href="/" class="mobile-link text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors">Home</a>
+      <a href="/work" class="mobile-link text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors">Work</a>
+      <a href="/about" class="mobile-link text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors">About</a>
+      <a href="/blog" class="mobile-link text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors">Blog</a>
+      <a href="/contact" class="mobile-link text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors">Contact</a>
+    </nav>
+  </div>
+
   <!-- Main Content -->
-  <main class="max-w-5xl mx-auto px-6 py-12 min-h-screen">
+  <main class="max-w-5xl mx-auto px-6 pt-4 pb-16 min-h-screen relative z-10">
     <slot />
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-light-hairline dark:border-dark-hairline transition-colors duration-200 mt-20">
-    <div class="max-w-5xl mx-auto px-6 py-12 flex flex-col gap-6">
+  <footer class="border-t border-light-hairline dark:border-dark-hairline transition-colors duration-300 mt-20 relative z-10 bg-light-bg/50 dark:bg-dark-bg/50 backdrop-blur-sm">
+    <div class="max-w-5xl mx-auto px-6 py-16 flex flex-col gap-8">
       <!-- Row 1: Nav Links -->
-      <nav class="flex gap-6 text-sm font-medium">
-        <a href="/work" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">Work</a>
-        <a href="/about" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">About</a>
-        <a href="/blog" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">Blog</a>
-        <a href="/contact" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">Contact</a>
+      <nav class="flex flex-wrap gap-6 text-sm font-medium">
+        <a href="/work" class="text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text transition-colors">Work</a>
+        <a href="/about" class="text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text transition-colors">About</a>
+        <a href="/blog" class="text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text transition-colors">Blog</a>
+        <a href="/contact" class="text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text transition-colors">Contact</a>
       </nav>
 
       <!-- Row 2: Socials -->
-      <div class="font-data text-xs flex flex-wrap gap-x-3 gap-y-2">
-        <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">GitHub — github.com/realParthiv</a>
-        <span class="text-light-muted dark:text-dark-muted hidden sm:inline">&middot;</span>
-        <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">LinkedIn — linkedin.com/in/parthivparmar</a>
-        <span class="text-light-muted dark:text-dark-muted hidden sm:inline">&middot;</span>
-        <a href="mailto:parthivp848@gmail.com" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors">Email — parthivp848@gmail.com</a>
+      <div class="font-data text-xs flex flex-wrap gap-x-4 gap-y-3">
+        <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1.5">
+          <span>GitHub</span>
+          <span class="opacity-50">&nearr;</span>
+        </a>
+        <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1.5">
+          <span>LinkedIn</span>
+          <span class="opacity-50">&nearr;</span>
+        </a>
+        <a href="mailto:parthivp848@gmail.com" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1.5">
+          <span>Email</span>
+          <span class="opacity-50">&rarr;</span>
+        </a>
       </div>
 
-      <!-- Row 3: Current Status -->
-      <div class="font-data text-xs text-light-muted dark:text-dark-muted">
-        currently @ Clicode — AI/ML Engineer
-      </div>
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mt-8 pt-8 border-t border-light-hairline dark:border-dark-hairline">
+        <!-- Row 3: Current Status -->
+        <div class="font-data text-xs text-light-muted dark:text-dark-muted">
+          currently @ <span class="text-light-text dark:text-dark-text">Clicode</span> — AI/ML Engineer
+        </div>
 
-      <!-- Row 4: Copyright -->
-      <div class="text-xs text-light-muted dark:text-dark-muted">
-        &copy; {currentYear} Parthiv Parmar
+        <!-- Row 4: Copyright -->
+        <div class="text-xs text-light-muted/50 dark:text-dark-muted/50">
+          &copy; {currentYear} Parthiv Parmar. Verified by code.
+        </div>
       </div>
     </div>
   </footer>
@@ -119,6 +154,37 @@ const currentYear = new Date().getFullYear();
         localStorage.setItem('theme', 'light');
         if (themeLabel) themeLabel.textContent = 'Dark';
       }
+    });
+
+    // Mobile menu logic
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileOverlay = document.getElementById('mobile-menu-overlay');
+    let menuOpen = false;
+
+    mobileBtn?.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        mobileOverlay.classList.remove('translate-x-full');
+        mobileOverlay.classList.add('translate-x-0');
+        mobileBtn.textContent = 'Close';
+        document.body.style.overflow = 'hidden';
+      } else {
+        mobileOverlay.classList.add('translate-x-full');
+        mobileOverlay.classList.remove('translate-x-0');
+        mobileBtn.textContent = 'Menu';
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close on link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileOverlay.classList.add('translate-x-full');
+        mobileOverlay.classList.remove('translate-x-0');
+        mobileBtn.textContent = 'Menu';
+        document.body.style.overflow = '';
+      });
     });
   </script>
 </body>

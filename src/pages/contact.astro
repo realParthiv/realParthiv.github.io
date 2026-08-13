@@ -3,31 +3,136 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base>
-  <article class="space-y-12 animate-fade-up max-w-[65ch]">
-    
-    <header class="space-y-6">
-      <h1 class="font-display text-2xl font-medium text-light-text dark:text-dark-text uppercase tracking-wider">Contact</h1>
-      <p class="font-body text-lg text-light-text dark:text-dark-text leading-relaxed">
-        Reaching out is easier than booking a puja through my own chatbot.
+  <article class="space-y-16 animate-fade-up max-w-[65ch] relative">
+    <header class="space-y-6 relative">
+      <div class="absolute -right-10 -top-10 w-[50%] h-[150%] rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-30 -z-10 pointer-events-none"></div>
+      <h1 class="font-display text-4xl sm:text-6xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-light-text to-light-muted dark:from-dark-text dark:to-dark-muted mb-4">
+        Contact
+      </h1>
+      <p class="font-body text-xl sm:text-2xl text-light-text dark:text-dark-text leading-relaxed">
+        Human protocol remains the highest-bandwidth connection available. Initiate a handshake.
       </p>
     </header>
 
-    <div class="flex flex-col gap-6 pt-4">
-      <a href="mailto:parthivp848@gmail.com" class="group flex flex-col sm:flex-row sm:items-baseline gap-2 pb-6 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors -mx-4 px-4 rounded-lg">
-        <span class="font-display font-medium text-lg text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors w-32">Email</span>
-        <span class="font-data text-light-muted dark:text-dark-muted group-hover:text-light-text dark:group-hover:text-dark-text transition-colors">parthivp848@gmail.com</span>
-      </a>
+    <!-- Form Section -->
+    <section>
+      <!-- Success Message (Hidden by default) -->
+      <div id="form-success" class="hidden py-8">
+        <div class="inline-flex font-data text-xs text-light-accent dark:text-dark-accent px-3 py-1.5 bg-light-accent/10 dark:bg-dark-accent/10 rounded tracking-widest uppercase">
+          VERIFIED — SENT
+        </div>
+      </div>
 
-      <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="group flex flex-col sm:flex-row sm:items-baseline gap-2 pb-6 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors -mx-4 px-4 rounded-lg">
-        <span class="font-display font-medium text-lg text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors w-32">LinkedIn</span>
-        <span class="font-data text-light-muted dark:text-dark-muted group-hover:text-light-text dark:group-hover:text-dark-text transition-colors">linkedin.com/in/parthivparmar</span>
-      </a>
+      <form id="contact-form" class="space-y-6">
+        <div class="space-y-2">
+          <label for="name" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Name</label>
+          <input type="text" id="name" name="name" required class="w-full bg-transparent border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" />
+        </div>
+        
+        <div class="space-y-2">
+          <label for="email" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Email</label>
+          <input type="email" id="email" name="email" required class="w-full bg-transparent border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors" />
+        </div>
+        
+        <div class="space-y-2">
+          <label for="message" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Message</label>
+          <textarea id="message" name="message" rows="5" required class="w-full bg-transparent border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-light-text dark:text-dark-text focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors resize-y"></textarea>
+        </div>
+        
+        <!-- Error Message (Hidden by default) -->
+        <p id="form-error" class="hidden font-body text-sm text-red-500 dark:text-red-400"></p>
 
-      <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="group flex flex-col sm:flex-row sm:items-baseline gap-2 pb-6 border-b border-transparent hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors -mx-4 px-4 rounded-lg">
-        <span class="font-display font-medium text-lg text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors w-32">GitHub</span>
-        <span class="font-data text-light-muted dark:text-dark-muted group-hover:text-light-text dark:group-hover:text-dark-text transition-colors">github.com/realParthiv</span>
-      </a>
-    </div>
+        <button type="submit" id="submit-btn" class="font-data text-sm tracking-wider uppercase px-6 py-3 border border-light-hairline dark:border-dark-hairline rounded-lg text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent hover:border-light-accent dark:hover:border-dark-accent transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+          Send
+        </button>
+      </form>
+    </section>
 
+    <!-- Fallback Links -->
+    <section class="pt-8 border-t border-light-hairline dark:border-dark-hairline">
+      <div class="flex flex-col gap-4 font-data text-sm tracking-wider uppercase">
+        <a href="mailto:parthivp848@gmail.com" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors group flex items-center gap-2 w-fit">
+          <span class="text-light-muted dark:text-dark-muted">Email</span> — parthivp848@gmail.com <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+        </a>
+        <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors group flex items-center gap-2 w-fit">
+          <span class="text-light-muted dark:text-dark-muted">LinkedIn</span> — linkedin.com/in/parthivparmar <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+        </a>
+        <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors group flex items-center gap-2 w-fit">
+          <span class="text-light-muted dark:text-dark-muted">GitHub</span> — github.com/realParthiv <span class="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+        </a>
+      </div>
+    </section>
   </article>
 </Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const formSuccess = document.getElementById('form-success');
+  const formError = document.getElementById('form-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Reset states
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    if (formError) formError.classList.add('hidden');
+
+    const formData = new FormData(form);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+
+    // Make sure we have the API key in the environment
+    const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+    if (!accessKey) {
+      if (formError) {
+        formError.textContent = 'Configuration error: Web3Forms key is missing in environment.';
+        formError.classList.remove('hidden');
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send';
+      return;
+    }
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: 'New message from portfolio',
+          from_name: 'Portfolio Contact Form',
+          name,
+          email,
+          message
+        })
+      });
+
+      const json = await response.json();
+
+      if (response.ok && json.success) {
+        form.classList.add('hidden');
+        if (formSuccess) formSuccess.classList.remove('hidden');
+      } else {
+        if (formError) {
+          formError.textContent = json.message || 'Something went wrong. Please try again.';
+          formError.classList.remove('hidden');
+        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send';
+      }
+    } catch (error) {
+      if (formError) {
+        formError.textContent = 'Network error. Please try again or use the fallback links.';
+        formError.classList.remove('hidden');
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send';
+    }
+  });
+</script>

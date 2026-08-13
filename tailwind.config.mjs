@@ -10,7 +10,8 @@ export default {
         text: '#DEE3DD', 
         muted: '#7C8983', 
         accent: '#B98A4F', 
-        hairline: '#212A24' 
+        hairline: '#212A24',
+        glow: 'rgba(185, 138, 79, 0.15)'
       },
       light: { 
         bg: '#F1F2EC', 
@@ -18,7 +19,8 @@ export default {
         text: '#12160F', 
         muted: '#5F6960', 
         accent: '#8C6636', 
-        hairline: '#DFE1D8' 
+        hairline: '#DFE1D8',
+        glow: 'rgba(140, 102, 54, 0.1)'
       }
     },
     fontFamily: {

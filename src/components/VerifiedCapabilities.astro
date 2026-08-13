@@ -1,56 +1,57 @@
 ---
 ---
-<section class="reveal-on-scroll">
-  <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Verified Capabilities</h2>
-  <div class="w-full overflow-x-auto pb-4">
-    <table class="w-full text-left border-collapse min-w-[600px]">
-      <thead>
-        <tr class="border-b border-light-hairline dark:border-dark-hairline">
-          <th class="py-3 pr-4 font-body font-medium text-sm text-light-muted dark:text-dark-muted font-normal w-[40%]">Capability</th>
-          <th class="py-3 px-4 font-body font-medium text-sm text-light-muted dark:text-dark-muted font-normal w-[40%]">Verified via</th>
-          <th class="py-3 pl-4 font-body font-medium text-sm text-light-muted dark:text-dark-muted font-normal text-right w-[20%]">Status</th>
-        </tr>
-      </thead>
-      <tbody class="text-sm">
-        <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <td class="py-3 pr-4">Django REST APIs</td>
-          <td class="py-3 px-4 text-light-muted dark:text-dark-muted">Virtueinfo (prod) · PujaGuru</td>
-          <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
-        </tr>
-        <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <td class="py-3 pr-4">MCP servers</td>
-          <td class="py-3 px-4 text-light-muted dark:text-dark-muted">PujaGuru</td>
-          <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
-        </tr>
-        <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <td class="py-3 pr-4">RAG pipelines</td>
-          <td class="py-3 px-4 text-light-muted dark:text-dark-muted">AI Email Automation</td>
-          <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
-        </tr>
-        <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <td class="py-3 pr-4">Solidity / Ethereum</td>
-          <td class="py-3 px-4 text-light-muted dark:text-dark-muted">AcademicShield · Virtueinfo</td>
-          <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
-        </tr>
-        <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <td class="py-3 pr-4">DB concurrency (MySQL)</td>
-          <td class="py-3 px-4 text-light-muted dark:text-dark-muted">Virtueinfo (prod)</td>
-          <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
-        </tr>
-        <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <td class="py-3 pr-4">Celery + Redis</td>
-          <td class="py-3 px-4 text-light-muted dark:text-dark-muted">Virtueinfo (prod)</td>
-          <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
-        </tr>
-        <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <td class="py-3 pr-4">TensorFlow / Deep Learning</td>
-          <td class="py-3 px-4 text-light-muted dark:text-dark-muted">NeuroType</td>
-          <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
-        </tr>
-      </tbody>
-    </table>
+<section class="reveal-on-scroll relative">
+  <div class="absolute -right-6 top-10 w-[20%] h-[60%] rounded-full bg-light-glow dark:bg-dark-glow blur-[100px] opacity-40 -z-10 pointer-events-none"></div>
+  
+  <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-10 uppercase tracking-widest">Verified Capabilities</h2>
+  
+  <div class="flex flex-col border-t border-light-hairline dark:border-dark-hairline relative z-10">
+    
+    <div class="group relative grid grid-cols-1 md:grid-cols-[1.5fr_2fr_120px] gap-4 items-center py-5 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+      <div class="font-display font-medium text-lg text-light-text dark:text-dark-text">Django REST APIs</div>
+      <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">Virtueinfo (prod) <span class="mx-1.5 text-light-hairline dark:text-dark-hairline">&bull;</span> PujaGuru</div>
+      <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right flex items-center md:justify-end gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-light-accent dark:bg-dark-accent"></span> VERIFIED</div>
+    </div>
+
+    <div class="group relative grid grid-cols-1 md:grid-cols-[1.5fr_2fr_120px] gap-4 items-center py-5 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+      <div class="font-display font-medium text-lg text-light-text dark:text-dark-text">MCP servers</div>
+      <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">PujaGuru</div>
+      <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right flex items-center md:justify-end gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-light-accent dark:bg-dark-accent"></span> VERIFIED</div>
+    </div>
+
+    <div class="group relative grid grid-cols-1 md:grid-cols-[1.5fr_2fr_120px] gap-4 items-center py-5 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+      <div class="font-display font-medium text-lg text-light-text dark:text-dark-text">RAG pipelines</div>
+      <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">AI Email Automation</div>
+      <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right flex items-center md:justify-end gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-light-accent dark:bg-dark-accent"></span> VERIFIED</div>
+    </div>
+
+    <div class="group relative grid grid-cols-1 md:grid-cols-[1.5fr_2fr_120px] gap-4 items-center py-5 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+      <div class="font-display font-medium text-lg text-light-text dark:text-dark-text">Solidity / Ethereum</div>
+      <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">AcademicShield <span class="mx-1.5 text-light-hairline dark:text-dark-hairline">&bull;</span> Virtueinfo</div>
+      <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right flex items-center md:justify-end gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-light-accent dark:bg-dark-accent"></span> VERIFIED</div>
+    </div>
+
+    <div class="group relative grid grid-cols-1 md:grid-cols-[1.5fr_2fr_120px] gap-4 items-center py-5 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+      <div class="font-display font-medium text-lg text-light-text dark:text-dark-text">DB concurrency (MySQL)</div>
+      <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">Virtueinfo (prod)</div>
+      <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right flex items-center md:justify-end gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-light-accent dark:bg-dark-accent"></span> VERIFIED</div>
+    </div>
+
+    <div class="group relative grid grid-cols-1 md:grid-cols-[1.5fr_2fr_120px] gap-4 items-center py-5 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+      <div class="font-display font-medium text-lg text-light-text dark:text-dark-text">Celery + Redis</div>
+      <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">Virtueinfo (prod)</div>
+      <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right flex items-center md:justify-end gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-light-accent dark:bg-dark-accent"></span> VERIFIED</div>
+    </div>
+
+    <div class="group relative grid grid-cols-1 md:grid-cols-[1.5fr_2fr_120px] gap-4 items-center py-5 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+      <div class="font-display font-medium text-lg text-light-text dark:text-dark-text">TensorFlow / DL</div>
+      <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">NeuroType</div>
+      <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right flex items-center md:justify-end gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-light-accent dark:bg-dark-accent"></span> VERIFIED</div>
+    </div>
+
   </div>
-  <div class="mt-6 font-body text-sm text-light-muted dark:text-dark-muted">
-    Also in the stack — LangChain, LangGraph, scikit-learn, PyTorch, MongoDB, n8n, Selenium, Web3.py, CI/CD, Postman.
+  
+  <div class="mt-8 pt-6 border-t border-light-hairline dark:border-dark-hairline font-data text-xs leading-loose text-light-muted dark:text-dark-muted uppercase tracking-wider">
+    Also verified: <span class="text-light-text dark:text-dark-text font-medium">LangChain, LangGraph, scikit-learn, PyTorch, MongoDB, n8n, Selenium, Web3.py, CI/CD, Postman.</span>
   </div>
 </section>

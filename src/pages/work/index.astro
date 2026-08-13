@@ -3,21 +3,33 @@ import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
 const allWorkEntries = await getCollection('work');
-const sortedWork = allWorkEntries.sort((a, b) => a.data.order - b.data.order);
+const sortedWorkEntries = allWorkEntries.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
 ---
 
 <Base>
-  <div class="space-y-12 animate-fade-up">
-    <h1 class="font-display text-2xl font-medium text-light-text dark:text-dark-text uppercase tracking-wider">Work log</h1>
+  <div class="space-y-16 animate-fade-up">
+    <header class="relative">
+      <div class="absolute -right-10 -top-10 w-[40%] h-[150%] rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-30 -z-10 pointer-events-none"></div>
+      <h1 class="font-display text-4xl sm:text-6xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-light-text to-light-muted dark:from-dark-text dark:to-dark-muted mb-4">
+        Work Ledger
+      </h1>
+      <p class="font-data text-sm tracking-widest uppercase text-light-muted dark:text-dark-muted">Complete log of production systems & architectures</p>
+    </header>
     
     <div class="flex flex-col border-t border-light-hairline dark:border-dark-hairline">
-      {sortedWork.map((entry, index) => (
-        <a href={`/work/${entry.id}`} class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted">{String(index + 1).padStart(2, '0')}</div>
-          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">{entry.data.title}</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted">{entry.data.stack.join(' · ')}</div>
+      {sortedWorkEntries.map((entry, index) => (
+        <a href={`/work/${entry.id}`} class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-8 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
+          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">{(index + 1).toString().padStart(2, '0')}</div>
+          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">{entry.data.title}</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">
+            {entry.data.stack.map((tech: string, i: number) => (
+              <span>{tech}{i < entry.data.stack.length - 1 ? <span class="mx-1.5 text-light-hairline dark:text-dark-hairline">|</span> : ''}</span>
+            ))}
+          </div>
           <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">{entry.data.year}</div>
-          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">{entry.data.status}</div>
+          <div class={`font-data text-xs md:text-right px-2 py-1 rounded w-fit md:ml-auto ${entry.data.status === 'VERIFIED — LIVE' ? 'bg-light-accent/10 dark:bg-dark-accent/10 text-light-accent dark:text-dark-accent' : 'border border-light-hairline dark:border-dark-hairline text-light-text dark:text-dark-text'}`}>
+            {entry.data.status}
+          </div>
         </a>
       ))}
     </div>
