@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const workEntries = await getCollection('work');
+  return workEntries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base>
+  <article class="space-y-12 animate-fade-up">
+    <!-- Header (same ledger row format, no link) -->
+    <div class="grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-y border-light-hairline dark:border-dark-hairline">
+      <div class="font-data text-sm text-light-muted dark:text-dark-muted">{String(entry.data.order).padStart(2, '0')}</div>
+      <div class="font-display font-medium text-light-text dark:text-dark-text">{entry.data.title}</div>
+      <div class="font-data text-xs text-light-muted dark:text-dark-muted">{entry.data.stack.join(' · ')}</div>
+      <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">{entry.data.year}</div>
+      <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">{entry.data.status}</div>
+    </div>
+
+    <!-- Body content -->
+    <div class="space-y-8">
+      {entry.data.url && (
+        <a href={entry.data.url} target="_blank" rel="noopener noreferrer" class="font-body text-sm font-medium hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1 w-fit">
+          Live at {entry.data.url}
+          <span class="text-xs">&nearr;</span>
+        </a>
+      )}
+      
+      <div class="font-body text-lg leading-relaxed max-w-[65ch] text-light-text dark:text-dark-text">
+        <Content />
+      </div>
+    </div>
+
+    <!-- Back link -->
+    <div class="pt-12 border-t border-light-hairline dark:border-dark-hairline">
+      <a href="/work" class="text-sm font-medium hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1 group w-fit">
+        <span class="group-hover:-translate-x-1 transition-transform">&larr;</span>
+        Back to work log
+      </a>
+    </div>
+  </article>
+</Base>

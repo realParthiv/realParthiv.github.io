@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const allWorkEntries = await getCollection('work');
+const sortedWork = allWorkEntries.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base>
+  <div class="space-y-12 animate-fade-up">
+    <h1 class="font-display text-2xl font-medium text-light-text dark:text-dark-text uppercase tracking-wider">Work log</h1>
+    
+    <div class="flex flex-col border-t border-light-hairline dark:border-dark-hairline">
+      {sortedWork.map((entry, index) => (
+        <a href={`/work/${entry.id}`} class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted">{String(index + 1).padStart(2, '0')}</div>
+          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">{entry.data.title}</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted">{entry.data.stack.join(' · ')}</div>
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">{entry.data.year}</div>
+          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">{entry.data.status}</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

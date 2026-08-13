@@ -1,17 +1,267 @@
 ---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
 
+const allBlogEntries = await getCollection('blog');
+const sortedBlogEntries = allBlogEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const recentBlogEntries = sortedBlogEntries.slice(0, 2);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+  <div class="space-y-32">
+    <!-- 1. HERO -->
+    <section class="flex flex-col items-start gap-8">
+      <div class="animate-fade-up w-14 h-14 rounded-full border border-light-accent dark:border-dark-accent flex items-center justify-center shrink-0">
+        <span class="font-display font-semibold text-light-accent dark:text-dark-accent text-xl leading-none mt-1">PP</span>
+      </div>
+      
+      <h1 class="animate-fade-up delay-100 font-display text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-light-text dark:text-dark-text max-w-4xl leading-[1.15]">
+        AI/ML Engineer — verified via production systems, not claims.
+      </h1>
+      
+      <div class="animate-fade-up delay-200 font-data text-sm text-light-muted dark:text-dark-muted">
+        currently @ Clicode — AI/ML Engineer
+      </div>
+    </section>
+
+    <!-- 2. THESIS -->
+    <section class="reveal-on-scroll flex flex-col items-start gap-6">
+      <p class="font-body text-lg sm:text-xl leading-relaxed max-w-[65ch] text-light-text dark:text-dark-text">
+        I build the layer between conversation and infrastructure — AI agents that read and write real data through MCP and RAG, backend systems that hold up under concurrent load, and the occasional smart contract when trust needs to be provable instead of promised.
+      </p>
+      <a href="/about" class="text-sm font-medium hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1 group">
+        More about how I got here 
+        <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+      </a>
+    </section>
+
+    <!-- 3. EXPERIENCE -->
+    <section class="reveal-on-scroll">
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Experience</h2>
+      <div class="flex flex-col gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-2 sm:gap-6 items-baseline">
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted">2026—present</div>
+          <div class="font-medium text-light-text dark:text-dark-text">AI/ML Engineer, Clicode</div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-2 sm:gap-6 items-baseline">
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted">2024—2026</div>
+          <div class="font-medium text-light-text dark:text-dark-text">Associate Python Developer, Virtueinfo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. LEDGER — SELECTED ENTRIES -->
+    <section class="reveal-on-scroll">
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Ledger — Selected Entries</h2>
+      <div class="flex flex-col border-t border-light-hairline dark:border-dark-hairline">
+        
+        <a href="/work/academicshield" class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted">01</div>
+          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">AcademicShield</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted">Django · Solidity · Ethereum · MySQL</div>
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2025</div>
+          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">VERIFIED — LIVE</div>
+        </a>
+
+        <a href="/work/pujaguru" class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted">02</div>
+          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">PujaGuru</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted">Django · MCP · MySQL · Django Channels</div>
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2025</div>
+          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">VERIFIED — SHIPPED</div>
+        </a>
+
+        <a href="/work/nomoreguilts" class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted">03</div>
+          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">NoMoreGuilts</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted">Django · Python · AI-assisted development</div>
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2026</div>
+          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">VERIFIED — LIVE</div>
+        </a>
+
+        <a href="/work/neurotype" class="group grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted">04</div>
+          <div class="font-display font-medium text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">NeuroType</div>
+          <div class="font-data text-xs text-light-muted dark:text-dark-muted">TensorFlow · Keras · FastAPI · React · BiLSTM</div>
+          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2026</div>
+          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right">VERIFIED — SHIPPED</div>
+        </a>
+
+      </div>
+      <div class="mt-6">
+        <a href="/work" class="text-sm font-medium hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-1 group w-fit">
+          Full work log
+          <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 5. VERIFIED CAPABILITIES -->
+    <section class="reveal-on-scroll">
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Verified Capabilities</h2>
+      <div class="w-full overflow-x-auto pb-4">
+        <table class="w-full text-left border-collapse min-w-[600px]">
+          <thead>
+            <tr class="border-b border-light-hairline dark:border-dark-hairline">
+              <th class="py-3 pr-4 font-body font-medium text-sm text-light-muted dark:text-dark-muted font-normal w-[40%]">Capability</th>
+              <th class="py-3 px-4 font-body font-medium text-sm text-light-muted dark:text-dark-muted font-normal w-[40%]">Verified via</th>
+              <th class="py-3 pl-4 font-body font-medium text-sm text-light-muted dark:text-dark-muted font-normal text-right w-[20%]">Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+              <td class="py-3 pr-4">Django REST APIs</td>
+              <td class="py-3 px-4 text-light-muted dark:text-dark-muted">Virtueinfo (prod) · PujaGuru</td>
+              <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
+            </tr>
+            <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+              <td class="py-3 pr-4">MCP servers</td>
+              <td class="py-3 px-4 text-light-muted dark:text-dark-muted">PujaGuru</td>
+              <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
+            </tr>
+            <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+              <td class="py-3 pr-4">RAG pipelines</td>
+              <td class="py-3 px-4 text-light-muted dark:text-dark-muted">AI Email Automation</td>
+              <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
+            </tr>
+            <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+              <td class="py-3 pr-4">Solidity / Ethereum</td>
+              <td class="py-3 px-4 text-light-muted dark:text-dark-muted">AcademicShield · Virtueinfo</td>
+              <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
+            </tr>
+            <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+              <td class="py-3 pr-4">DB concurrency (MySQL)</td>
+              <td class="py-3 px-4 text-light-muted dark:text-dark-muted">Virtueinfo (prod)</td>
+              <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
+            </tr>
+            <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+              <td class="py-3 pr-4">Celery + Redis</td>
+              <td class="py-3 px-4 text-light-muted dark:text-dark-muted">Virtueinfo (prod)</td>
+              <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
+            </tr>
+            <tr class="border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+              <td class="py-3 pr-4">TensorFlow / Deep Learning</td>
+              <td class="py-3 px-4 text-light-muted dark:text-dark-muted">NeuroType</td>
+              <td class="py-3 pl-4 text-right font-data text-xs text-light-accent dark:text-dark-accent">VERIFIED</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-6 font-body text-sm text-light-muted dark:text-dark-muted">
+        Also in the stack — LangChain, LangGraph, scikit-learn, PyTorch, MongoDB, n8n, Selenium, Web3.py, CI/CD, Postman.
+      </div>
+    </section>
+
+    <!-- 6. BLOG TEASER -->
+    <section class="reveal-on-scroll">
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Log</h2>
+      
+      {recentBlogEntries.length === 0 ? (
+        <div class="font-data text-sm text-light-muted dark:text-dark-muted py-8 border-y border-light-hairline dark:border-dark-hairline text-center">
+          No entries logged yet. First one's coming.
+        </div>
+      ) : (
+        <div class="flex flex-col border-t border-light-hairline dark:border-dark-hairline">
+          {recentBlogEntries.map(entry => (
+            <a href={`/blog/${entry.id}`} class="group py-6 border-b border-light-hairline dark:border-dark-hairline hover:bg-light-surface/50 dark:hover:bg-dark-surface/50 transition-colors">
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
+                <h3 class="font-display font-medium text-lg text-light-text dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">
+                  {entry.data.title}
+                </h3>
+                <time class="font-data text-xs text-light-muted dark:text-dark-muted" datetime={entry.data.date.toISOString()}>
+                  {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </time>
+              </div>
+              <p class="text-sm text-light-muted dark:text-dark-muted line-clamp-2">
+                {entry.data.excerpt}
+              </p>
+            </a>
+          ))}
+        </div>
+      )}
+    </section>
+
+    <!-- 7. CONTACT / CTA -->
+    <section class="reveal-on-scroll mb-16">
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-wider">Contact</h2>
+      <p class="font-body text-lg mb-8">
+        Reaching out is easier than booking a puja through my own chatbot.
+      </p>
+      <div class="flex flex-wrap gap-8 text-xl font-medium">
+        <a href="mailto:parthivp848@gmail.com" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors border-b border-transparent hover:border-light-accent dark:hover:border-dark-accent pb-1">Email</a>
+        <a href="https://linkedin.com/in/parthivparmar" target="_blank" rel="noopener noreferrer" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors border-b border-transparent hover:border-light-accent dark:hover:border-dark-accent pb-1">LinkedIn</a>
+        <a href="https://github.com/realParthiv" target="_blank" rel="noopener noreferrer" class="hover:text-light-accent dark:hover:text-dark-accent transition-colors border-b border-transparent hover:border-light-accent dark:hover:border-dark-accent pb-1">GitHub</a>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  /* Hero Animations */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+
+  /* Scroll Reveal Defaults */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .reveal-on-scroll.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll-triggered reveals
+  const setupObserver = () => {
+    // Respect reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (prefersReducedMotion) {
+            // Immediate reveal without transition if reduced motion is preferred
+            entry.target.style.transition = 'none';
+          }
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target); // Only reveal once
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('.reveal-on-scroll');
+    elements.forEach(el => observer.observe(el));
+  };
+
+  // Run on first load
+  setupObserver();
+  
+  // Re-run setup after Astro view transitions (if enabled in future)
+  document.addEventListener('astro:page-load', setupObserver);
+</script>
