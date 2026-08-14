@@ -1,6 +1,6 @@
 ---
 title: "The Reversal Curse: The Architectural Blindspot in LLMs"
-date: 2026-08-13
+date: 2026-08-14
 tags: ["LLMs", "Architecture", "RAG"]
 excerpt: "If a model learns that 'A equals B', why doesn't it know that 'B equals A'? Understanding a critical flaw in autoregressive training and why it matters for engineers."
 ---

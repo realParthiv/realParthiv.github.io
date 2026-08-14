@@ -1,7 +1,7 @@
 ---
 title: ProfitPulse
 stack: [React, Django, XGBoost, Celery, PostgreSQL]
-year: 2024
+year: 2026
 status: "VERIFIED — SHIPPED"
 order: 1
 ---

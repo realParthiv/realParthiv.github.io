@@ -38,8 +38,11 @@ import Base from '../layouts/Base.astro';
         </div>
         
         <div class="space-y-2">
-          <label for="message" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Message</label>
-          <textarea id="message" name="message" rows="5" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-inherit focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors resize-y" style="color: inherit;"></textarea>
+          <div class="flex justify-between items-center">
+            <label for="message" class="block font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted">Message</label>
+            <span id="char-count" class="font-data text-xs text-light-muted dark:text-dark-muted" aria-live="polite">0 / 1500</span>
+          </div>
+          <textarea id="message" name="message" rows="5" maxlength="1500" required class="w-full bg-light-surface/50 dark:bg-dark-surface/50 border border-light-hairline dark:border-dark-hairline rounded-lg px-4 py-3 font-body text-inherit focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors resize-y" style="color: inherit;"></textarea>
         </div>
         
         <!-- Error Message (Hidden by default) -->
@@ -107,6 +110,21 @@ import Base from '../layouts/Base.astro';
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const formSuccess = document.getElementById('form-success');
   const formError = document.getElementById('form-error');
+  const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+  const charCount = document.getElementById('char-count');
+
+  // Live character counter
+  messageInput?.addEventListener('input', () => {
+    const currentLength = messageInput.value.length;
+    if (charCount) {
+      charCount.textContent = `${currentLength} / 1500`;
+      if (currentLength >= 1500) {
+        charCount.classList.add('text-light-accent', 'dark:text-dark-accent');
+      } else {
+        charCount.classList.remove('text-light-accent', 'dark:text-dark-accent');
+      }
+    }
+  });
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -132,6 +150,17 @@ import Base from '../layouts/Base.astro';
     const email = formData.get('email');
     const message = formData.get('message');
     const botcheck = formData.get('botcheck');
+
+    // Validate character limit
+    if (typeof message === 'string' && message.length > 1500) {
+      if (formError) {
+        formError.textContent = 'Message exceeds the maximum limit of 1500 characters.';
+        formError.classList.remove('hidden');
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send';
+      return;
+    }
 
     // Honeypot check
     if (botcheck) {
