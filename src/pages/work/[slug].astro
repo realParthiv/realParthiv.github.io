@@ -14,7 +14,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<Base>
+<Base title={entry.data.title}>
   <article class="space-y-12 animate-fade-up">
     <!-- Header (same ledger row format, no link) -->
     <div class="grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-4 border-y border-light-hairline dark:border-dark-hairline">

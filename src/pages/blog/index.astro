@@ -6,7 +6,7 @@ const allBlogEntries = await getCollection('blog');
 const sortedBlogEntries = allBlogEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<Base>
+<Base title="Log">
   <div class="space-y-16 animate-fade-up relative">
     <header class="space-y-4 relative">
       <div class="absolute -left-10 -top-10 w-[30%] h-[100%] rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-30 -z-10 pointer-events-none"></div>

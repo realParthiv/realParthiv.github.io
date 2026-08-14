@@ -14,7 +14,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<Base>
+<Base title={entry.data.title}>
   <article class="space-y-12 animate-fade-up">
     <!-- Header -->
     <header class="space-y-4 pb-8 border-b border-light-hairline dark:border-dark-hairline">
