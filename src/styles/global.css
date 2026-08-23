@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Horizontal overflow guard.
+
+  Must be on the root element: overflow set on <html> propagates to the viewport
+  and therefore clips position:fixed children too. The same rule on <body> does
+  not — a fixed element's containing block is the viewport, so the off-screen
+  mobile menu (translate-x-full) escaped it and widened the page on phones.
+
+  `clip` rather than `hidden` on purpose: `hidden` turns the element into a
+  scroll container, which forces overflow-y to `auto` and breaks the sticky
+  header. `clip` just clips. `hidden` is kept first as a fallback for browsers
+  predating `clip` (Safari < 16).
+*/
+html {
+  overflow-x: clip;
+}
+
+/* Safari < 16 has no `overflow: clip`. Written as @supports rather than two
+   declarations because the minifier de-duplicates the plain fallback away. */
+@supports not (overflow-x: clip) {
+  html {
+    overflow-x: hidden;
+  }
+}
+
 /* Entrance animation. Global on purpose: Astro `<style>` blocks are scoped to
    the component that declares them, so keeping these in index.astro left
    `animate-fade-up` inert on every other page that used it. */
