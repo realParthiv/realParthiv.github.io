@@ -1,12 +1,19 @@
 ---
 import Base from '../../layouts/Base.astro';
+import BackLink from '../../components/BackLink.astro';
+import LedgerRow from '../../components/LedgerRow.astro';
 import { getCollection } from 'astro:content';
 
 const allWorkEntries = await getCollection('work');
-const sortedWorkEntries = allWorkEntries.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+const sortedWorkEntries = allWorkEntries.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<Base title="Work">
+<Base
+  title="Work"
+  image="/og/work.png"
+  description="A complete log of production systems built by Parthiv Parmar: blockchain credential registries, MCP booking agents, RAG pipelines, recommendation engines and trading intelligence platforms."
+>
+  <BackLink fallback="/" label="Back to home" class="mb-6" />
   <div class="space-y-16 animate-fade-up">
     <header class="relative">
       <div class="absolute -right-10 -top-10 w-[40%] h-[150%] rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-30 -z-10 pointer-events-none"></div>
@@ -18,19 +25,7 @@ const sortedWorkEntries = allWorkEntries.sort((a, b) => (a.data.order || 99) - (
     
     <div class="flex flex-col border-t border-light-hairline dark:border-dark-hairline">
       {sortedWorkEntries.map((entry, index) => (
-        <a href={`/work/${entry.id}`} class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-8 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
-          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">{(index + 1).toString().padStart(2, '0')}</div>
-          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">{entry.data.title}</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">
-            {entry.data.stack.map((tech: string, i: number) => (
-              <span>{tech}{i < entry.data.stack.length - 1 ? <span class="mx-1.5 text-light-hairline dark:text-dark-hairline">|</span> : ''}</span>
-            ))}
-          </div>
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">{entry.data.year}</div>
-          <div class={`font-data text-xs md:text-right px-2 py-1 rounded w-fit md:ml-auto ${entry.data.status === 'VERIFIED — LIVE' ? 'bg-light-accent/10 dark:bg-dark-accent/10 text-light-accent dark:text-dark-accent' : 'border border-light-hairline dark:border-dark-hairline text-light-text dark:text-dark-text'}`}>
-            {entry.data.status}
-          </div>
-        </a>
+        <LedgerRow entry={entry} index={index + 1} spacious />
       ))}
     </div>
   </div>

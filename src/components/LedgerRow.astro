@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  /** 1-based position, rendered as the zero-padded index column. */
+  index: number;
+  /** Roomier vertical rhythm for the full work log. */
+  spacious?: boolean;
+}
+
+const { entry, index, spacious = false } = Astro.props;
+const isLive = entry.data.status === 'VERIFIED — LIVE';
+---
+
+<a
+  href={`/work/${entry.id}`}
+  class:list={[
+    'group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent',
+    spacious ? 'py-8' : 'py-6'
+  ]}
+>
+  <div class="font-data text-sm text-light-muted dark:text-dark-muted group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">
+    {index.toString().padStart(2, '0')}
+  </div>
+
+  <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">
+    {entry.data.title}
+  </div>
+
+  <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">
+    {entry.data.stack.map((tech, i) => (
+      <span>
+        {tech}
+        {i < entry.data.stack.length - 1 && (
+          <span class="mx-1.5 text-light-hairline dark:text-dark-hairline">|</span>
+        )}
+      </span>
+    ))}
+  </div>
+
+  <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">
+    {entry.data.year}
+  </div>
+
+  <div
+    class:list={[
+      'font-data text-xs md:text-right px-2 py-1 rounded w-fit md:ml-auto',
+      isLive
+        ? 'bg-light-accent/10 dark:bg-dark-accent/10 text-light-accent dark:text-dark-accent'
+        : 'border border-light-hairline dark:border-dark-hairline text-light-text dark:text-dark-text'
+    ]}
+  >
+    {entry.data.status}
+  </div>
+</a>

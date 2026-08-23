@@ -3,7 +3,8 @@ title: Invoice Extractor
 stack: [Django, Python, pdfplumber, PyMuPDF, Poppler, pandas, Docker]
 year: 2025
 status: "VERIFIED — SHIPPED"
-order: 7
+summary: "A service that reads invoice PDFs from any vendor and returns clean structured data, including the line-item tables most parsers give up on."
+order: 9
 ---
 # Automated Document Intelligence and Bounding-Box Extraction
 
@@ -15,7 +16,7 @@ Enterprise accounts payable teams deal with thousands of heterogeneous invoice f
 
 To support diverse vendor formats, the system implements a dual-layer extraction engine built on **Poppler (`pdftotext`)**, **`pdfplumber`**, and **`PyMuPDF`**:
 
-1. **Spatial Region Targeting:** Allows administrators to define bounding-box coordinates ($x, y, \text{width}, \text{height}$) on vendor sample PDFs to isolate precise graphical regions for header values (e.g., Invoice Number, Tax ID, Total Amount).
+1. **Spatial Region Targeting:** Allows administrators to define bounding-box coordinates (`x`, `y`, `width`, `height`) on vendor sample PDFs to isolate precise graphical regions for header values (e.g., Invoice Number, Tax ID, Total Amount).
 2. **Regex Pattern Matching:** Supports fallback field parsing using compiled regular expression patterns and capture groups across extracted document text streams.
 
 ## Automatic Table Fallback Engine

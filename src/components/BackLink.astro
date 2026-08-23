@@ -1,0 +1,82 @@
+---
+interface Props {
+  /** Where to go when there's no same-origin page to return to. */
+  fallback: string;
+  /** Label shown for that fallback destination. */
+  label?: string;
+  class?: string;
+}
+
+const { fallback, label = 'Back', class: className = '' } = Astro.props;
+---
+
+<!--
+  Renders as a real link to `fallback`, so it works with JS disabled, on direct
+  visits, and for crawlers. The script below upgrades it to a true "go back"
+  only when the previous page was on this site.
+-->
+<a
+  href={fallback}
+  data-back-link
+  class:list={[
+    'group inline-flex items-center gap-2 w-fit font-data text-xs uppercase tracking-widest text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors',
+    className
+  ]}
+>
+  <span aria-hidden="true" class="group-hover:-translate-x-1 transition-transform">&larr;</span>
+  <span data-back-label>{label}</span>
+</a>
+
+<script>
+  const EXACT: Record<string, string> = {
+    '/': 'Back to home',
+    '/work': 'Back to work log',
+    '/blog': 'Back to log',
+    '/about': 'Back to about',
+    '/contact': 'Back to contact'
+  };
+
+  function labelFor(path: string): string | null {
+    const clean = path.replace(/\/+$/, '') || '/';
+    if (clean in EXACT) return EXACT[clean];
+    if (clean.startsWith('/work/')) return 'Back to project';
+    if (clean.startsWith('/blog/')) return 'Back to post';
+    return null;
+  }
+
+  /** The previous page, but only if it was on this site and isn't this page. */
+  function internalReferrer(): URL | null {
+    if (!document.referrer) return null;
+    let ref: URL;
+    try {
+      ref = new URL(document.referrer);
+    } catch {
+      return null;
+    }
+    if (ref.origin !== window.location.origin) return null;
+    if (ref.pathname === window.location.pathname) return null;
+    return ref;
+  }
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-back-link]').forEach(link => {
+    const ref = internalReferrer();
+    if (!ref || history.length <= 1) return;
+
+    // Retarget the href too, so middle-click / "open in new tab" still lands
+    // somewhere sensible rather than silently using the fallback.
+    link.href = ref.pathname + ref.search;
+
+    const text = labelFor(ref.pathname);
+    const labelEl = link.querySelector('[data-back-label]');
+    if (text && labelEl) labelEl.textContent = text;
+
+    link.addEventListener('click', (e) => {
+      // Let the browser handle modified clicks (new tab, new window, download).
+      if (e.defaultPrevented) return;
+      const me = e as MouseEvent;
+      if (me.button !== 0 || me.metaKey || me.ctrlKey || me.shiftKey || me.altKey) return;
+      e.preventDefault();
+      history.back();
+    });
+  });
+</script>

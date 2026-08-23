@@ -1,9 +1,11 @@
 ---
 title: PujaGuru
-stack: [Django, DRF, WebSockets, Redis, Celery, FCM]
+stack: [Django, DRF, MariaDB, WebSockets, Redis, Celery, FCM]
 year: 2025
 status: "VERIFIED — SHIPPED"
-order: 3
+summary: "A booking marketplace for pandits, with live offer broadcasting and an MCP server that lets an AI agent handle a whole booking in conversation."
+featured: true
+order: 5
 ---
 # Architecting a Two-Sided Marketplace
 

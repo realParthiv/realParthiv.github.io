@@ -1,8 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
+import BackLink from '../components/BackLink.astro';
 ---
 
-<Base title="Contact">
+<Base
+  title="Contact"
+  image="/og/contact.png"
+  description="Get in touch with Parthiv Parmar — AI/ML engineer. Email, LinkedIn, GitHub, or the form on this page."
+>
+  <BackLink fallback="/" label="Back to home" class="mb-6" />
   <article class="space-y-16 animate-fade-up max-w-[65ch] relative">
     <header class="space-y-6 relative">
       <div class="absolute -right-10 -top-10 w-[50%] h-[150%] rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-30 -z-10 pointer-events-none"></div>

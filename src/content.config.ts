@@ -8,7 +8,14 @@ const workCollection = defineCollection({
     stack: z.array(z.string()),
     year: z.number(),
     status: z.enum(["VERIFIED — LIVE", "VERIFIED — SHIPPED"]),
+    /** Live deployment. Rendered as the "Live at" link. */
     url: z.string().url().optional(),
+    /** Public source. Rendered as the "Source" link — the proof behind "verified by code". */
+    repo: z.string().url().optional(),
+    /** One or two sentences. Used as the page meta description. */
+    summary: z.string(),
+    /** Surfaced in the homepage "Selected Entries" ledger. */
+    featured: z.boolean().default(false),
     order: z.number()
   })
 });

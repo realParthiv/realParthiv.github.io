@@ -1,32 +1,110 @@
 ---
 import Base from '../layouts/Base.astro';
+import BackLink from '../components/BackLink.astro';
 import VerifiedCapabilities from '../components/VerifiedCapabilities.astro';
+
+const principles = [
+  {
+    title: 'Receipts, not summaries.',
+    body: "If a system tells you it did something, there should be a row, a hash, or a log line that agrees. Language is not a confirmation."
+  },
+  {
+    title: 'The boring primitives win.',
+    body: 'Transactions, idempotency keys and row-level locks are older than every framework on my CV, and they still solve most of what gets labelled an AI problem.'
+  },
+  {
+    title: 'Retrieval beats memorisation.',
+    body: "Fine-tuning teaches a model what to say. Retrieval tells it what's true. Most teams reach for the first when they needed the second."
+  },
+  {
+    title: 'Production is the only benchmark.',
+    body: 'Latency under load, behaviour at the edges, what happens when the upstream API is down at 3am. That is the part worth engineering.'
+  }
+];
+
+const roles = [
+  { period: '2026 — present', title: 'AI/ML Engineer', org: 'Clicode', current: true },
+  { period: '2024 — 2026', title: 'Associate Python Developer', org: 'Virtueinfo', current: false }
+];
 ---
 
-<Base title="About">
+<Base
+  title="About"
+  image="/og/about.png"
+  description="Parthiv Parmar — AI/ML engineer at Clicode. Backend first, machine learning second: agents that take real actions, retrieval that refuses to invent, and systems that can prove what they did."
+>
+  <BackLink fallback="/" label="Back to home" class="mb-6" />
   <article class="space-y-24 sm:space-y-32 animate-fade-up">
-    
+
     <!-- Hero / Intro -->
     <header class="relative">
       <div class="absolute -left-10 -top-10 w-[40%] h-full rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-30 -z-10 pointer-events-none"></div>
-      
-      <h1 class="font-display text-5xl sm:text-7xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-light-text to-light-muted dark:from-dark-text dark:to-dark-muted mb-8">
-        About
+
+      <p class="font-data text-xs uppercase tracking-widest text-light-accent dark:text-dark-accent mb-6">About</p>
+
+      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-light-text to-light-muted dark:from-dark-text dark:to-dark-muted mb-10 max-w-[18ch] leading-[1.05]">
+        I build systems that can prove what they did.
       </h1>
-      <div class="font-body text-xl sm:text-2xl leading-relaxed max-w-[65ch] text-light-text dark:text-dark-text">
-        <p class="mb-6">
-          I am <span class="text-light-accent dark:text-dark-accent font-medium">Parthiv Parmar</span>. I learned to build by studying the bones of backend architecture—grappling with database deadlocks, network partitions, and the unforgiving reality of systems under load. I migrated to applied Machine Learning not for the algorithmic theater, but for the engineering frontier it presented: the transition from software that merely processes instructions to agents that parse intent, reason against real-world state, and execute decisions.
+
+      <div class="font-body text-lg sm:text-xl leading-relaxed max-w-[62ch] text-light-text dark:text-dark-text space-y-6">
+        <p>
+          I'm <span class="text-light-accent dark:text-dark-accent font-medium">Parthiv Parmar</span>, an AI/ML engineer at Clicode. I got here through backend work — deadlocks, race conditions, queues that back up at three in the morning — and that is still how I think about machine learning. A model is one more unreliable dependency you have to design around.
         </p>
         <p>
-          I do not build demos; I engineer production systems. From orchestrating high-concurrency inference pipelines to wiring deterministic smart contracts, I treat software engineering as an exercise in rigorous abstraction. There is no urgency to chase the zeitgeist—only the quiet, compounding discipline of writing code that outlasts its dependencies.
+          Most of what I build sits on that seam. Agents that take real actions through MCP instead of describing them. Retrieval pipelines that would rather return nothing than invent an answer. Smart contracts for the narrow set of cases where someone needs to check the work without trusting me to be honest about it.
+        </p>
+        <p class="text-light-text dark:text-dark-text font-medium">
+          I don't ship demos. A demo works once, on one machine, on the input you picked for it. Everything interesting happens after that.
         </p>
       </div>
     </header>
 
+    <!-- HOW I WORK -->
+    <section>
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-10 uppercase tracking-widest">How I Work</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-light-hairline dark:bg-dark-hairline border border-light-hairline dark:border-dark-hairline rounded-lg overflow-hidden">
+        {principles.map((principle, i) => (
+          <div class="group bg-light-bg dark:bg-dark-bg p-7 sm:p-8 transition-colors duration-300 hover:bg-light-surface dark:hover:bg-dark-surface">
+            <div class="font-data text-xs text-light-accent dark:text-dark-accent mb-4 tracking-widest">
+              {(i + 1).toString().padStart(2, '0')}
+            </div>
+            <h3 class="font-display font-medium text-lg sm:text-xl text-light-text dark:text-dark-text mb-3 tracking-tight">
+              {principle.title}
+            </h3>
+            <p class="font-body text-sm sm:text-base leading-relaxed text-light-muted dark:text-dark-muted">
+              {principle.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-10 uppercase tracking-widest">Experience</h2>
+
+      <div class="flex flex-col gap-8 border-l border-light-hairline dark:border-dark-hairline pl-6">
+        {roles.map(role => (
+          <div class={`group relative ${role.current ? '' : 'opacity-70 hover:opacity-100 transition-opacity'}`}>
+            <div class={`absolute -left-[29px] top-1.5 w-2 h-2 rounded-full ring-4 ring-light-bg dark:ring-dark-bg transition-colors ${role.current ? 'bg-light-accent dark:bg-dark-accent' : 'bg-light-muted dark:bg-dark-muted group-hover:bg-light-text dark:group-hover:bg-dark-text'}`}></div>
+            <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-1 sm:gap-8 items-baseline">
+              <div class={`font-data text-sm ${role.current ? 'text-light-accent dark:text-dark-accent' : 'text-light-muted dark:text-dark-muted'}`}>
+                {role.period}
+              </div>
+              <div class="font-display text-lg sm:text-xl font-medium text-light-text dark:text-dark-text">
+                {role.title}<span class="text-light-muted dark:text-dark-muted font-normal">, {role.org}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
     <!-- EDUCATION -->
-    <section class="reveal-on-scroll">
+    <section>
       <h2 class="font-display text-sm text-light-muted dark:text-dark-muted mb-8 uppercase tracking-widest">Education</h2>
-      
+
       <div class="group relative flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 py-6 border-y border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
         <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">
           BSc Information Technology <span class="block sm:inline font-normal text-sm sm:text-xl text-light-muted dark:text-dark-muted sm:mx-2 mt-1 sm:mt-0">GLS University, Ahmedabad</span>
@@ -35,12 +113,27 @@ import VerifiedCapabilities from '../components/VerifiedCapabilities.astro';
           2022–2025 <span class="mx-2 text-light-hairline dark:text-dark-hairline">|</span> CGPA 8.2
         </div>
       </div>
-      
+
       <!-- /* MSc IT status not confirmed for public display — ask Parthiv before adding */ -->
     </section>
 
     <!-- VERIFIED CAPABILITIES -->
     <VerifiedCapabilities />
+
+    <!-- CTA -->
+    <section class="pt-12 border-t border-light-hairline dark:border-dark-hairline">
+      <p class="font-display text-2xl sm:text-3xl font-medium tracking-tight mb-8 max-w-[28ch] leading-tight text-light-text dark:text-dark-text">
+        If you're building something that has to keep working, I'd like to hear about it.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 font-data text-sm tracking-wider uppercase">
+        <a href="/contact" class="text-light-accent dark:text-dark-accent hover:opacity-70 transition-opacity flex items-center gap-2 group w-fit">
+          Get in touch <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
+        <a href="/work" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group w-fit">
+          See the work <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
+      </div>
+    </section>
 
   </article>
 </Base>

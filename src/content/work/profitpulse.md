@@ -3,7 +3,8 @@ title: ProfitPulse
 stack: [React, Django, XGBoost, Celery, PostgreSQL]
 year: 2026
 status: "VERIFIED — SHIPPED"
-order: 1
+summary: "A trading dashboard that pulls four market data sources into one feed and shows why each prediction came out the way it did."
+order: 2
 ---
 # Navigating Market Noise
 

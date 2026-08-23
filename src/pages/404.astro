@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import BackLink from '../components/BackLink.astro';
+---
+
+<Base
+  title="404"
+  description="That route does not resolve. Head back to the work ledger or the log."
+>
+  <BackLink fallback="/" label="Back to home" class="mb-6" />
+  <section class="min-h-[50vh] flex flex-col items-start justify-center gap-8 animate-fade-up">
+    <div class="font-data text-xs uppercase tracking-widest text-light-accent dark:text-dark-accent px-3 py-1.5 bg-light-accent/10 dark:bg-dark-accent/10 rounded w-fit">
+      404 — NO SUCH ENTRY
+    </div>
+
+    <h1 class="font-display text-5xl sm:text-7xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-light-text to-light-muted dark:from-dark-text dark:to-dark-muted">
+      Route does not resolve.
+    </h1>
+
+    <p class="font-body text-lg sm:text-xl text-light-muted dark:text-dark-muted max-w-[55ch] leading-relaxed">
+      Nothing is logged at this path. It was either never written, or it moved.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 font-data text-sm tracking-wider uppercase pt-4">
+      <a href="/" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group">
+        <span class="group-hover:-translate-x-1 transition-transform">&larr;</span> Home
+      </a>
+      <a href="/work" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group">
+        Work ledger <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+      </a>
+      <a href="/blog" class="text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors flex items-center gap-2 group">
+        Log <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+      </a>
+    </div>
+  </section>
+</Base>

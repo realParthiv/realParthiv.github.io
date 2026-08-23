@@ -3,7 +3,8 @@ title: Email Automation System
 stack: [FastAPI, n8n, Ollama, PyTorch, ChromaDB]
 year: 2024
 status: "VERIFIED — SHIPPED"
-order: 2
+summary: "An email support pipeline that reads incoming mail, answers what it can from the company's own docs, and escalates anything it isn't sure about."
+order: 3
 ---
 # The Problem of Support Latency
 

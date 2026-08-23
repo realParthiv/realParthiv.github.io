@@ -3,7 +3,8 @@ title: SiteForge
 stack: [Node.js, LLMs, Tailwind CSS, GSAP, Octokit]
 year: 2026
 status: "VERIFIED — SHIPPED"
-order: 5
+summary: "A chain of agents that turns one sentence into a deployed portfolio site: writing the pages, checking them, then pushing them live to GitHub Pages."
+order: 7
 ---
 # Autonomous Multi-Agent Web Generation
 

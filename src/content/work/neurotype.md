@@ -3,13 +3,15 @@ title: NeuroType
 stack: [TensorFlow, Keras, FastAPI, React, BiLSTM]
 year: 2026
 status: "VERIFIED — SHIPPED"
-order: 4
+summary: "A next-word prediction model trained across technical, casual and general writing, so autocomplete stops guessing in the wrong register."
+featured: true
+order: 6
 ---
 # Mitigating Domain Bias in Real-Time Text Prediction
 
 Standard next-word prediction models often fail when switching between different writing contexts. A model trained primarily on conversational dialogue struggles with technical documentation, while a model over-fitted on academic papers feels unnatural in casual communication. Furthermore, achieving real-time inference latency under 15ms is mandatory for autocomplete engines to prevent disrupting a user's typing cadence.
 
-**NeuroType** was engineered as a high-performance next-word prediction ecosystem designed to understand multi-domain linguistic context with sub-millisecond inference time.
+**NeuroType** was engineered as a high-performance next-word prediction ecosystem designed to understand multi-domain linguistic context while holding inference latency under 15ms.
 
 ## Multi-Domain Role-Aware Architecture
 

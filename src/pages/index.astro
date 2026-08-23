@@ -1,7 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import VerifiedCapabilities from '../components/VerifiedCapabilities.astro';
+import LedgerRow from '../components/LedgerRow.astro';
 import { getCollection } from 'astro:content';
+
+// Driven by `featured: true` in each work entry's frontmatter, so the homepage
+// ledger can never drift from the case study it links to.
+const featuredWork = (await getCollection('work'))
+  .filter(entry => entry.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
 
 const allBlogEntries = await getCollection('blog');
 const sortedBlogEntries = allBlogEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -68,37 +75,9 @@ const recentBlogEntries = sortedBlogEntries.slice(0, 2);
       
       <div class="flex flex-col border-t border-light-hairline dark:border-dark-hairline">
         
-        <a href="/work/academicshield" class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-6 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
-          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">01</div>
-          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">AcademicShield</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">Django <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Solidity <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Ethereum <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> MySQL</div>
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2025</div>
-          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right px-2 py-1 bg-light-accent/10 dark:bg-dark-accent/10 rounded w-fit md:ml-auto">VERIFIED — LIVE</div>
-        </a>
-
-        <a href="/work/pujaguru" class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-6 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
-          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">02</div>
-          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">PujaGuru</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">Django <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> MCP <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> MySQL <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Channels</div>
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2025</div>
-          <div class="font-data text-xs text-light-text dark:text-dark-text md:text-right px-2 py-1 border border-light-hairline dark:border-dark-hairline rounded w-fit md:ml-auto">VERIFIED — SHIPPED</div>
-        </a>
-
-        <a href="/work/nomoreguilts" class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-6 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
-          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">03</div>
-          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">NoMoreGuilts</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">Django <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Python <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> AI-assisted</div>
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2026</div>
-          <div class="font-data text-xs text-light-accent dark:text-dark-accent md:text-right px-2 py-1 bg-light-accent/10 dark:bg-dark-accent/10 rounded w-fit md:ml-auto">VERIFIED — LIVE</div>
-        </a>
-
-        <a href="/work/neurotype" class="group relative grid grid-cols-1 md:grid-cols-[40px_2fr_3fr_60px_auto] gap-4 items-center py-6 border-b border-light-hairline dark:border-dark-hairline transition-all duration-300 hover:pl-4 hover:bg-gradient-to-r hover:from-light-glow hover:to-transparent dark:hover:from-dark-glow dark:hover:to-transparent">
-          <div class="font-data text-sm text-light-muted/50 dark:text-dark-muted/50 group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">04</div>
-          <div class="font-display font-medium text-xl text-light-text dark:text-dark-text">NeuroType</div>
-          <div class="font-data text-xs text-light-muted dark:text-dark-muted leading-relaxed">TensorFlow <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> Keras <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> FastAPI <span class="mx-1 text-light-hairline dark:text-dark-hairline">|</span> React</div>
-          <div class="font-data text-sm text-light-muted dark:text-dark-muted md:text-center">2026</div>
-          <div class="font-data text-xs text-light-text dark:text-dark-text md:text-right px-2 py-1 border border-light-hairline dark:border-dark-hairline rounded w-fit md:ml-auto">VERIFIED — SHIPPED</div>
-        </a>
+        {featuredWork.map((entry, index) => (
+          <LedgerRow entry={entry} index={index + 1} />
+        ))}
 
       </div>
       <div class="mt-8 sm:hidden">
@@ -180,27 +159,7 @@ const recentBlogEntries = sortedBlogEntries.slice(0, 2);
 </Base>
 
 <style>
-  /* Hero Animations */
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-      filter: blur(4px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0);
-    }
-  }
-
-  .animate-fade-up {
-    animation: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-  }
-
-  .delay-100 { animation-delay: 150ms; }
-  .delay-200 { animation-delay: 300ms; }
+  /* Hero entrance animation now lives in global.css so every page can use it. */
 
   /* Scroll Reveal Defaults */
   .reveal-on-scroll {

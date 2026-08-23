@@ -3,7 +3,8 @@ title: Prosody
 stack: [Django, Next.js, DistilBERT, PyTorch, MCP, Celery, Jira, ClickUp]
 year: 2026
 status: "VERIFIED — SHIPPED"
-order: 6
+summary: "A tool that turns meeting transcripts into Jira and ClickUp tickets, tracking where the conversation got tense and confirming names before it files anything."
+order: 8
 ---
 # Eliminating Meeting Entropy and Action Item Ambiguity
 

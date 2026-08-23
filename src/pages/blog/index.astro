@@ -1,12 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
+import BackLink from '../../components/BackLink.astro';
 import { getCollection } from 'astro:content';
 
 const allBlogEntries = await getCollection('blog');
 const sortedBlogEntries = allBlogEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<Base title="Log">
+<Base
+  title="Log"
+  image="/og/blog.png"
+  description="Writing by Parthiv Parmar on AI infrastructure, agent design, LLM architecture and the engineering discipline behind production machine learning."
+>
+  <BackLink fallback="/" label="Back to home" class="mb-6" />
   <div class="space-y-16 animate-fade-up relative">
     <header class="space-y-4 relative">
       <div class="absolute -left-10 -top-10 w-[30%] h-[100%] rounded-full bg-light-glow dark:bg-dark-glow blur-[120px] opacity-30 -z-10 pointer-events-none"></div>

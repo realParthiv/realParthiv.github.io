@@ -11,11 +11,50 @@ import '@fontsource/ibm-plex-sans/600.css';
 
 interface Props {
   title?: string;
+  description?: string;
+  /** Absolute or root-relative path to a social share image. */
+  image?: string;
+  /** Open Graph object type. Use "article" on blog posts and case studies. */
+  type?: 'website' | 'article';
+  /** ISO date, emitted as article:published_time when type is "article". */
+  publishedTime?: string;
 }
 
-const { title } = Astro.props;
-const pageTitle = title ? `Parthiv Parmar | ${title}` : 'Parthiv Parmar';
+const {
+  title,
+  description = 'Parthiv Parmar — AI/ML engineer building production systems: autonomous agents over MCP, RAG pipelines that refuse to hallucinate, and high-throughput Django backends.',
+  image = '/og/default.png',
+  type = 'website',
+  publishedTime
+} = Astro.props;
+
+const pageTitle = title ? `Parthiv Parmar | ${title}` : 'Parthiv Parmar — AI/ML Engineer';
 const currentYear = new Date().getFullYear();
+
+// Astro.site is set in astro.config.mjs; these resolve to absolute URLs,
+// which is what crawlers and social scrapers require.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(image, Astro.site);
+
+// Describe the card the way a screen reader would need it, per page.
+const imageAlt = title
+  ? `${title} — Parthiv Parmar`
+  : 'Parthiv Parmar — AI/ML Engineer';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Parthiv Parmar',
+  url: Astro.site?.href,
+  jobTitle: 'AI/ML Engineer',
+  email: 'mailto:parthivp848@gmail.com',
+  worksFor: { '@type': 'Organization', name: 'Clicode' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'GLS University, Ahmedabad' },
+  sameAs: [
+    'https://github.com/realParthiv',
+    'https://linkedin.com/in/parthivparmar'
+  ]
+};
 ---
 
 <!DOCTYPE html>
@@ -23,9 +62,41 @@ const currentYear = new Date().getFullYear();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- favicon.ico is the fallback browsers auto-probe for non-HTML responses
+       (an image URL opened directly has no <head> to read these from). -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
   <title>{pageTitle}</title>
-  
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta name="author" content="Parthiv Parmar" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content="Parthiv Parmar" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={socialImageURL} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={imageAlt} />
+  <meta property="og:locale" content="en_US" />
+  {type === 'article' && publishedTime && (
+    <meta property="article:published_time" content={publishedTime} />
+  )}
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={socialImageURL} />
+  <meta name="twitter:image:alt" content={imageAlt} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
+
   <script is:inline>
     (function() {
       // Dark is the deliberate default
@@ -73,7 +144,7 @@ const currentYear = new Date().getFullYear();
 
         <div class="w-px h-4 bg-light-hairline dark:bg-dark-hairline sm:hidden"></div>
 
-        <button id="mobile-menu-btn" class="sm:hidden text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors uppercase tracking-widest" aria-label="Toggle menu">
+        <button id="mobile-menu-btn" class="sm:hidden text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors uppercase tracking-widest" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-overlay">
           Menu
         </button>
       </nav>
@@ -81,7 +152,10 @@ const currentYear = new Date().getFullYear();
   </header>
 
   <!-- Mobile Menu Overlay -->
-  <div id="mobile-menu-overlay" class="fixed inset-0 z-40 bg-light-bg/95 dark:bg-dark-bg/95 backdrop-blur-xl translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-center px-8">
+  <!-- `inert` keeps the off-screen links out of the tab order and the a11y tree
+       until the menu is actually opened. Without it they stay focusable at every
+       breakpoint, including desktop where the menu can never be shown. -->
+  <div id="mobile-menu-overlay" inert aria-hidden="true" class="fixed inset-0 z-40 bg-light-bg/95 dark:bg-dark-bg/95 backdrop-blur-xl translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-center px-8">
     <nav class="flex flex-col gap-8 text-4xl font-display font-medium tracking-tight">
       <a href="/" class="mobile-link text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors">Home</a>
       <a href="/work" class="mobile-link text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent transition-colors">Work</a>
@@ -130,7 +204,7 @@ const currentYear = new Date().getFullYear();
         </div>
 
         <!-- Row 4: Copyright -->
-        <div class="text-xs text-light-muted/50 dark:text-dark-muted/50">
+        <div class="text-xs text-light-muted dark:text-dark-muted">
           &copy; {currentYear} Parthiv Parmar. Verified by code.
         </div>
       </div>
@@ -166,33 +240,42 @@ const currentYear = new Date().getFullYear();
     // Mobile menu logic
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileOverlay = document.getElementById('mobile-menu-overlay');
-    let menuOpen = false;
 
-    mobileBtn?.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      if (menuOpen) {
-        mobileOverlay.classList.remove('translate-x-full');
-        mobileOverlay.classList.add('translate-x-0');
-        mobileBtn.textContent = 'Close';
-        document.body.style.overflow = 'hidden';
-      } else {
-        mobileOverlay.classList.add('translate-x-full');
-        mobileOverlay.classList.remove('translate-x-0');
-        mobileBtn.textContent = 'Menu';
-        document.body.style.overflow = '';
-      }
-    });
+    if (mobileBtn && mobileOverlay) {
+      const firstLink = mobileOverlay.querySelector<HTMLAnchorElement>('.mobile-link');
+      let menuOpen = false;
 
-    // Close on link click
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => {
-        menuOpen = false;
-        mobileOverlay.classList.add('translate-x-full');
-        mobileOverlay.classList.remove('translate-x-0');
-        mobileBtn.textContent = 'Menu';
-        document.body.style.overflow = '';
+      const setMenu = (open: boolean) => {
+        menuOpen = open;
+        mobileOverlay.classList.toggle('translate-x-full', !open);
+        mobileOverlay.classList.toggle('translate-x-0', open);
+        // inert + aria-hidden must track the visual state, or the links stay
+        // reachable by keyboard and screen reader while the menu looks closed.
+        mobileOverlay.toggleAttribute('inert', !open);
+        mobileOverlay.setAttribute('aria-hidden', String(!open));
+        mobileBtn.setAttribute('aria-expanded', String(open));
+        mobileBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        mobileBtn.textContent = open ? 'Close' : 'Menu';
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+
+      mobileBtn.addEventListener('click', () => {
+        setMenu(!menuOpen);
+        // Move focus into the panel so keyboard users land somewhere useful.
+        if (menuOpen) firstLink?.focus();
       });
-    });
+
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuOpen) {
+          setMenu(false);
+          mobileBtn.focus();
+        }
+      });
+    }
   </script>
 </body>
 </html>

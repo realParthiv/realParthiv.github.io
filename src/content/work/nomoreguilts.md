@@ -4,7 +4,9 @@ stack: [Django, React, scikit-learn, Redis, Celery, MySQL]
 year: 2026
 status: "VERIFIED — LIVE"
 url: "https://nomoreguilts.com"
-order: 3
+summary: "An anonymous place for professionals to write up the mistakes they nearly got burned by, with a feed that stays relevant without repeating itself."
+featured: true
+order: 4
 ---
 # Overcoming Psychological Fear and Institutional Knowledge Loss
 

@@ -3,6 +3,8 @@ title: AcademicShield 2.0
 stack: [Django, React, TypeScript, Ethereum, Solidity, Celery, Razorpay]
 year: 2025
 status: "VERIFIED — SHIPPED"
+summary: "A university management platform that records every issued degree on-chain, so an employer can verify a certificate without having to ask the university."
+featured: true
 order: 1
 ---
 # Eradicating Academic Fraud & Operational Fragmentation
@@ -32,7 +34,9 @@ The platform's trust layer relies on a custom **Solidity** smart contract deploy
 ### Cryptographic Hashing and Batching
 When a certificate is generated, the backend computes a SHA-256 cryptographic fingerprint combining student identity, course details, and issue timestamp:
 
-$$\text{Certificate Hash} = \text{SHA-256}(\text{Certificate Number} + \text{Student ID} + \text{Enrollment} + \text{Issue Date})$$
+```
+certificate_hash = SHA-256(certificate_number + student_id + enrollment_no + issue_date)
+```
 
 University administrators use MetaMask client-side signatures to execute `anchorCredential` or `batchAnchorCredentials` on `CredentialRegistry.sol`. Gas efficiency is maximized through batch anchoring array inputs, achieving a **~75% reduction in gas fees** compared to single-credential transactions.
 
@@ -53,7 +57,7 @@ Universities frequently reject SaaS platforms that hold tuition fees in intermed
 Beyond credential verification, AcademicShield 2.0 automates complex university operational workflows:
 
 - **Multi-Tier Result Approval Pipeline:** Grades progress through a strict approval chain:
-  $$\text{Faculty Entry (Pending)} \longrightarrow \text{Department Review} \longrightarrow \text{University Approval} \longrightarrow \text{Published}$$
+  `Faculty entry (pending)` → `Department review` → `University approval` → `Published`
 - **Automated SGPA/CGPA Calculation:** Calculates grade points, semester performance, and cumulative GPAs against customizable institutional grade boundaries.
 - **Promotion Policy Engine:** Evaluates student performance against configurable rules (minimum CGPA thresholds, maximum backlog limits, attendance percentages) to automate semester advancement or detention.
 - **Real-Time Kanban Timetable Scheduler:** Features drag-and-drop scheduling with an in-memory conflict detection engine that prevents double-booking rooms, faculty members, or student groups.
