@@ -31,6 +31,11 @@ const {
 const pageTitle = title ? `Parthiv Parmar | ${title}` : 'Parthiv Parmar — AI/ML Engineer';
 const currentYear = new Date().getFullYear();
 
+// Cloudflare Web Analytics beacon. Cookie-less, no consent banner needed.
+// Unset in an environment (no PUBLIC_CF_BEACON_TOKEN) and the tag simply
+// doesn't render — safe by default, nothing to break on deploy.
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
+
 // Astro.site is set in astro.config.mjs; these resolve to absolute URLs,
 // which is what crawlers and social scrapers require.
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -96,6 +101,10 @@ const personSchema = {
   <meta name="twitter:image:alt" content={imageAlt} />
 
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
+
+  {cfBeaconToken && (
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${cfBeaconToken}"}`}></script>
+  )}
 
   <script is:inline>
     (function() {
