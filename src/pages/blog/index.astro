@@ -19,10 +19,7 @@ const sortedBlogEntries = allBlogEntries.sort((a, b) => b.data.date.valueOf() - 
       <h1 class="font-display text-4xl sm:text-6xl font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-light-text to-light-muted dark:from-dark-text dark:to-dark-muted">
         Log
       </h1>
-      <div class="flex items-center justify-between gap-4">
-        <p class="font-data text-sm tracking-widest uppercase text-light-muted dark:text-dark-muted">Thoughts on infrastructure, ML, and architecture</p>
-        <a href="/rss.xml" class="font-data text-xs tracking-widest uppercase text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-dark-accent transition-colors border border-light-hairline dark:border-dark-hairline rounded-full px-2.5 py-1 shrink-0">RSS</a>
-      </div>
+      <p class="font-data text-sm tracking-widest uppercase text-light-muted dark:text-dark-muted">Thoughts on infrastructure, ML, and architecture</p>
     </header>
     
     {sortedBlogEntries.length === 0 ? (
