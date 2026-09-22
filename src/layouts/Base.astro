@@ -36,6 +36,11 @@ const currentYear = new Date().getFullYear();
 // doesn't render — safe by default, nothing to break on deploy.
 const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 
+// Google Search Console domain verification (the "meta tag" ownership-proof
+// method). Set PUBLIC_GOOGLE_SITE_VERIFICATION to the content value GSC gives
+// you; unset and the tag simply doesn't render.
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+
 // Astro.site is set in astro.config.mjs; these resolve to absolute URLs,
 // which is what crawlers and social scrapers require.
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -60,6 +65,21 @@ const personSchema = {
     'https://linkedin.com/in/parthivparmar'
   ]
 };
+
+// Per-post rich-result eligibility. Only emitted on article pages, where
+// publishedTime is set by the blog [slug] route.
+const articleSchema = type === 'article' && publishedTime ? {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  image: socialImageURL.href,
+  datePublished: publishedTime,
+  url: canonicalURL.href,
+  author: { '@type': 'Person', name: 'Parthiv Parmar', url: Astro.site?.href },
+  publisher: { '@type': 'Person', name: 'Parthiv Parmar' },
+  mainEntityOfPage: canonicalURL.href
+} : null;
 ---
 
 <!DOCTYPE html>
@@ -77,6 +97,10 @@ const personSchema = {
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
   <meta name="author" content="Parthiv Parmar" />
+  <link rel="alternate" type="application/rss+xml" title="Parthiv Parmar — Log" href="/rss.xml" />
+  {googleSiteVerification && (
+    <meta name="google-site-verification" content={googleSiteVerification} />
+  )}
 
   <!-- Open Graph -->
   <meta property="og:type" content={type} />
@@ -101,6 +125,9 @@ const personSchema = {
   <meta name="twitter:image:alt" content={imageAlt} />
 
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
+  {articleSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} is:inline />
+  )}
 
   {cfBeaconToken && (
     <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${cfBeaconToken}"}`}></script>
